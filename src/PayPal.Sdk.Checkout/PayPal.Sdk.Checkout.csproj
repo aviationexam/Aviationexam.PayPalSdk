@@ -56,7 +56,7 @@
   <ItemGroup>
     <PackageReference Include="Aviationexam.GeneratedJsonConverters.SourceGenerator" Version="0.2.1" PrivateAssets="all" />
     <PackageReference Include="GitReader.SourceGenerator" Version="0.2.1" PrivateAssets="all" />
-    <PackageReference Include="Meziantou.Analyzer" Version="2.0.186" PrivateAssets="all" />
+    <PackageReference Include="Meziantou.Analyzer" Version="2.0.188" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net8.0' ">
