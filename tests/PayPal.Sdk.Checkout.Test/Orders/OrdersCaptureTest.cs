@@ -16,7 +16,7 @@ public class OrdersCaptureTest
     {
         using var payPalHttpClient = TestHttpClientFactory.CreateHttpClient();
 
-        var accessToken = await payPalHttpClient.AuthenticateAsync();
+        var accessToken = await payPalHttpClient.AuthenticateAsync(cancellationToken: TestContext.Current.CancellationToken);
 
         Assert.NotNull(accessToken);
 
@@ -26,7 +26,7 @@ public class OrdersCaptureTest
 
         var createdOrderId = orderResponse.ResponseBody.Id;
 
-        var getOrderResponse = await payPalHttpClient.GetOrderRawAsync(accessToken, createdOrderId);
+        var getOrderResponse = await payPalHttpClient.GetOrderRawAsync(accessToken, createdOrderId, cancellationToken: TestContext.Current.CancellationToken);
 
         Assert.NotNull(getOrderResponse.ResponseBody);
 
@@ -47,7 +47,7 @@ public class OrdersCaptureTest
                 //}
             });
 
-            var response = await payPalHttpClient.ExecuteAsync<OrdersCaptureRequest, OrderActionRequest, Order>(request, accessToken);
+            var response = await payPalHttpClient.ExecuteAsync<OrdersCaptureRequest, OrderActionRequest, Order>(request, accessToken, TestContext.Current.CancellationToken);
 
             Assert.Equal(HttpStatusCode.Created, response.ResponseStatusCode);
             Assert.NotNull(response.ResponseBody);

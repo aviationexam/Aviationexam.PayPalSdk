@@ -4,7 +4,6 @@ using PayPal.Sdk.Checkout.Test.Infrastructure;
 using System.Net;
 using System.Threading.Tasks;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace PayPal.Sdk.Checkout.Test.Orders;
 
@@ -18,7 +17,7 @@ public class OrdersGetTest(
     {
         using var payPalHttpClient = TestHttpClientFactory.CreateHttpClient();
 
-        var accessToken = await payPalHttpClient.AuthenticateAsync();
+        var accessToken = await payPalHttpClient.AuthenticateAsync(cancellationToken: TestContext.Current.CancellationToken);
 
         Assert.NotNull(accessToken);
 
@@ -27,7 +26,7 @@ public class OrdersGetTest(
         Assert.NotNull(orderResponse.ResponseBody);
         var createdOrder = orderResponse.ResponseBody;
 
-        var getOrderResponse = await payPalHttpClient.GetOrderRawAsync(accessToken, createdOrder.Id);
+        var getOrderResponse = await payPalHttpClient.GetOrderRawAsync(accessToken, createdOrder.Id, cancellationToken: TestContext.Current.CancellationToken);
 
         Assert.Equal(HttpStatusCode.OK, getOrderResponse.ResponseStatusCode);
 
