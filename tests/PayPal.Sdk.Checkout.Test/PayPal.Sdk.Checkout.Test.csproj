@@ -7,6 +7,11 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
+    <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\src\PayPal.Sdk.Checkout\PayPal.Sdk.Checkout.csproj" />
   </ItemGroup>
