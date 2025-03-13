@@ -8,7 +8,6 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace PayPal.Sdk.Checkout.Test.Orders;
 
@@ -59,7 +58,7 @@ public class OrdersCreateTest(
     {
         using var payPalHttpClient = TestHttpClientFactory.CreateHttpClient();
 
-        var accessToken = await payPalHttpClient.AuthenticateAsync();
+        var accessToken = await payPalHttpClient.AuthenticateAsync(cancellationToken: TestContext.Current.CancellationToken);
 
         Assert.NotNull(accessToken);
 

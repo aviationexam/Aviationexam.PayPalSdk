@@ -30,7 +30,7 @@ public class OrdersPatchTest
     {
         using var payPalHttpClient = TestHttpClientFactory.CreateHttpClient();
 
-        var accessToken = await payPalHttpClient.AuthenticateAsync();
+        var accessToken = await payPalHttpClient.AuthenticateAsync(cancellationToken: TestContext.Current.CancellationToken);
 
         Assert.NotNull(accessToken);
 
@@ -42,12 +42,15 @@ public class OrdersPatchTest
         var patchResponse = await payPalHttpClient.OrdersPatchRequestRawAsync(
             accessToken,
             createdOrder.Id,
-            BuildRequestBody()
+            BuildRequestBody(),
+            cancellationToken: TestContext.Current.CancellationToken
         );
 
         Assert.Equal(HttpStatusCode.NoContent, patchResponse.ResponseStatusCode);
 
-        var getOrderResponse = await payPalHttpClient.GetOrderRawAsync(accessToken, createdOrder.Id);
+        var getOrderResponse = await payPalHttpClient.GetOrderRawAsync(
+            accessToken, createdOrder.Id, cancellationToken: TestContext.Current.CancellationToken
+        );
 
         Assert.Equal(HttpStatusCode.OK, getOrderResponse.ResponseStatusCode);
 

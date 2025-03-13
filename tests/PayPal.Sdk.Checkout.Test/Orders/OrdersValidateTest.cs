@@ -15,7 +15,7 @@ public class OrdersValidateTest
     {
         using var payPalHttpClient = TestHttpClientFactory.CreateHttpClient();
 
-        var accessToken = await payPalHttpClient.AuthenticateAsync();
+        var accessToken = await payPalHttpClient.AuthenticateAsync(cancellationToken: TestContext.Current.CancellationToken);
 
         Assert.NotNull(accessToken);
 
@@ -36,7 +36,8 @@ public class OrdersValidateTest
                         Token = new Token(),
                     },
                 });
-            }
+            },
+            cancellationToken: TestContext.Current.CancellationToken
         );
         Assert.Equal(HttpStatusCode.OK, response.ResponseStatusCode);
         Assert.NotNull(response.ResponseBody);

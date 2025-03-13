@@ -14,26 +14,22 @@ public class OrdersAuthorizeTest
     {
         using var payPalHttpClient = TestHttpClientFactory.CreateHttpClient();
 
-        var accessToken = await payPalHttpClient.AuthenticateAsync();
+        var accessToken = await payPalHttpClient.AuthenticateAsync(cancellationToken: TestContext.Current.CancellationToken);
 
         Assert.NotNull(accessToken);
 
         var orderResponse = await OrdersCreateTest.CreateOrder(payPalHttpClient, accessToken);
         var createdOrder = orderResponse.ResponseBody!;
 
-        var response = await payPalHttpClient.AuthorizeOrderRawAsync(
-            accessToken,
-            createdOrder.Id,
-            request =>
+        var response = await payPalHttpClient.AuthorizeOrderRawAsync(accessToken, createdOrder.Id, request =>
+        {
+            request.SetRequestBody(new AuthorizeRequest
             {
-                request.SetRequestBody(new AuthorizeRequest
-                {
-                    Amount = new Money(),
-                    PaymentSource = new PaymentSource(),
-                    ReferenceId = "ReferenceId",
-                });
-            }
-        );
+                Amount = new Money(),
+                PaymentSource = new PaymentSource(),
+                ReferenceId = "ReferenceId",
+            });
+        }, cancellationToken: TestContext.Current.CancellationToken);
 
         Assert.Equal(200, (int) response.ResponseStatusCode);
         Assert.NotNull(response.ResponseBody);
