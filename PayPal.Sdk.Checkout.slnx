@@ -1,0 +1,23 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/Solution Items/">
+    <File Path=".config/dotnet-tools.json" />
+    <File Path="GitVersion.yml" />
+    <File Path="nuget.config" />
+    <File Path="props/PayPal.props" />
+    <File Path="README.MD" />
+  </Folder>
+  <Folder Name="/Solution Items/GithubWorkflows/">
+    <File Path=".github/workflows/build.yml" />
+    <File Path=".github/workflows/nightly-release.yml" />
+    <File Path=".github/workflows/pr-build.yml" />
+    <File Path=".github/workflows/release.yml" />
+  </Folder>
+  <Project Path="samples/PayPal.Sdk.Checkout.Samples/PayPal.Sdk.Checkout.Samples.csproj" Type="Classic C#" />
+  <Project Path="src/PayPal.Sdk.Checkout/PayPal.Sdk.Checkout.csproj" Type="Classic C#" />
+  <Project Path="tests/PayPal.Sdk.Checkout.Test/PayPal.Sdk.Checkout.Test.csproj" Type="Classic C#" />
+</Solution>

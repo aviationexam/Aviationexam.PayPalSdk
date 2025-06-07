@@ -34,7 +34,7 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Configure GitInfo">
-    <GitInfo_RootDirectory>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), 'PayPal.Sdk.Checkout.sln'))\.git</GitInfo_RootDirectory>
+    <GitInfo_RootDirectory>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), 'PayPal.Sdk.Checkout.slnx'))\.git</GitInfo_RootDirectory>
 
     <GitInfo_Namespace>PayPal.Sdk.Checkout</GitInfo_Namespace>
 
