@@ -72,6 +72,7 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.7" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.7" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="9.0.7" />
+    <PackageReference Include="Microsoft.NET.ILLink.Tasks" Version="9.0.7" />
     <PackageReference Include="System.Text.Json" Version="9.0.7" />
   </ItemGroup>
 
