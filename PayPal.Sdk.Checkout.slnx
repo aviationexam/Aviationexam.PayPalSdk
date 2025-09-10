@@ -10,6 +10,8 @@
     <File Path="nuget.config" />
     <File Path="props/PayPal.props" />
     <File Path="README.MD" />
+    <File Path="Directory.Packages.props" />
+    <File Path="WarningConfiguration.targets" />
   </Folder>
   <Folder Name="/Solution Items/GithubWorkflows/">
     <File Path=".github/workflows/build.yml" />
