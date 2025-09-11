@@ -11,7 +11,7 @@ namespace Aviationexam.PayPalSdk.Test.Orders;
 [Collection("Orders")]
 public class OrdersCreateTest
 {
-    private static Order_request BuildRequestBody() => new()
+    public static Order_request BuildRequestBody() => new()
     {
         Intent = Checkout_payment_intent.CAPTURE,
         PurchaseUnits =
@@ -19,7 +19,7 @@ public class OrdersCreateTest
             new Purchase_unit_request
             {
                 ReferenceId = "test_ref_id1",
-                InvoiceId = "123456",
+                InvoiceId = DateTime.Now.Ticks.ToString(),
                 Amount = new Amount_with_breakdown
                 {
                     CurrencyCode = "EUR",
@@ -100,7 +100,7 @@ public class OrdersCreateTest
 
         Assert.NotNull(createdOrder.Links);
 
-        var approveUrl =Assert.Single(createdOrder.Links, x => string.Equals(x.Rel, "approve", StringComparison.Ordinal));
+        var approveUrl = Assert.Single(createdOrder.Links, x => string.Equals(x.Rel, "approve", StringComparison.Ordinal));
         Assert.NotNull(approveUrl.Href);
         Assert.Equal(Link_description_method.GET, approveUrl.Method);
 

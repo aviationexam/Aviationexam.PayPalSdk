@@ -1,59 +1,52 @@
-/*
- using PayPal.Sdk.Checkout.ContractEnums;
-using PayPal.Sdk.Checkout.Extensions;
-using PayPal.Sdk.Checkout.Orders;
-using PayPal.Sdk.Checkout.Test.Infrastructure;
-using System.Net;
+using Aviationexam.PayPalSdk.Payments.PayPalCheckoutOrdersClientV2;
+using Aviationexam.PayPalSdk.Payments.PayPalCheckoutOrdersClientV2.Models;
+using Aviationexam.PayPalSdk.Test.Infrastructure;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace PayPal.Sdk.Checkout.Test.Orders;
-
+namespace Aviationexam.PayPalSdk.Test.Orders;
 
 [Collection("Orders")]
 public class OrdersCaptureTest
 {
-    [Fact(Skip = "This test is an example. In production, you will need a credit card")]
-    public async Task TestOrdersCaptureRequest()
+    [Theory]
+    [ClassData(typeof(PayPalAuthenticationsClassData), Explicit = true)]
+    public async Task TestOrdersCaptureRequest(
+        PayPalAuthenticationsClassData.AuthenticationData? authenticationData
+    )
     {
-        using var payPalHttpClient = TestHttpClientFactory.CreateHttpClient();
+        await using var serviceProvider = ServiceProviderFactory.Create(
+            authenticationData!,
+            shouldRedactHeaderValue: true
+        );
 
-        var accessToken = await payPalHttpClient.AuthenticateAsync(cancellationToken: TestContext.Current.CancellationToken);
+        var payPalOrdersApiV2Client = serviceProvider.GetRequiredService<PayPalOrdersApiV2Client>();
 
-        Assert.NotNull(accessToken);
+        var payPalRequestId = Guid.NewGuid();
+        var createdOrder = await payPalOrdersApiV2Client.V2.Checkout.Orders.PostAsync(
+            OrdersCreateTest.BuildRequestBody(),
+            x => x.Headers.Add("PayPal-Request-Id", payPalRequestId.ToString()),
+            cancellationToken: TestContext.Current.CancellationToken
+        );
 
-        var orderResponse = await OrdersCreateTest.CreateOrder(payPalHttpClient, accessToken);
+        Assert.NotNull(createdOrder);
 
-        Assert.NotNull(orderResponse.ResponseBody);
+        var getOrderResponse = await payPalOrdersApiV2Client.V2.Checkout.Orders[createdOrder.Id].GetAsync(cancellationToken: TestContext.Current.CancellationToken);
 
-        var createdOrderId = orderResponse.ResponseBody.Id;
+        Assert.NotNull(getOrderResponse);
 
-        var getOrderResponse = await payPalHttpClient.GetOrderRawAsync(accessToken, createdOrderId, cancellationToken: TestContext.Current.CancellationToken);
-
-        Assert.NotNull(getOrderResponse.ResponseBody);
-
-        if (getOrderResponse.ResponseBody.CheckoutPaymentIntent == EOrderIntent.Authorize)
+        if (getOrderResponse.Status is Order_status.APPROVED)
         {
-            var request = new OrdersCaptureRequest(createdOrderId);
-            request.SetPreferReturn(EPreferReturn.Representation);
-            request.SetRequestBody(new OrderActionRequest
-            {
-                //PaymentSource = new PaymentSource
-                //{
-                //    Card = new Card { },
-                //    Token = new Token
-                //    {
-                //        Id = "",
-                //        Type = ETokenType.BillingAgreement,
-                //    },
-                //}
-            });
+            var captureOrderResponse = await payPalOrdersApiV2Client.V2.Checkout.Orders[createdOrder.Id].Capture.PostAsync(
+                new Order_capture_request(),
+                cancellationToken: TestContext.Current.CancellationToken
+            );
 
-            var response = await payPalHttpClient.ExecuteAsync<OrdersCaptureRequest, OrderActionRequest, Order>(request, accessToken, TestContext.Current.CancellationToken);
-
-            Assert.Equal(HttpStatusCode.Created, response.ResponseStatusCode);
-            Assert.NotNull(response.ResponseBody);
+            Assert.NotNull(captureOrderResponse);
+            Assert.Equal(Order_status.COMPLETED, captureOrderResponse.Status);
+            Assert.NotNull(captureOrderResponse.Payer);
         }
     }
 }
-*/
