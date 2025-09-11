@@ -5,15 +5,14 @@ using Microsoft.Kiota.Abstractions;
 
 namespace Aviationexam.PayPalSdk.Payments.Extensions;
 
-public static class DependencyInjectionExtensions
+public static class PayPalPaymentsDependencyInjectionExtensions
 {
     public static PayPalBuilder AddPaymentsApi(
         this PayPalBuilder builder
     )
     {
-        var serviceCollection = builder.Services;
-        serviceCollection.AddTransient<PayPalPaymentsApiV2Client>(serviceProvider => new PayPalPaymentsApiV2Client(
-            serviceProvider.GetRequiredKeyedService<IRequestAdapter>(Aviationexam.PayPalSdk.Common.Extensions.DependencyInjectionExtensions.PayPalServiceKey)
+        builder.Services.AddTransient<PayPalPaymentsApiV2Client>(serviceProvider => new PayPalPaymentsApiV2Client(
+            serviceProvider.GetRequiredKeyedService<IRequestAdapter>(DependencyInjectionExtensions.PayPalServiceKey)
         ));
 
         return builder;
