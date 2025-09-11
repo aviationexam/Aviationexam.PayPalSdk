@@ -32,8 +32,8 @@ jobs:
       - name: Test
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PAYPAL_ClientId: ${{ secrets.PAYPAL_CLIENT_ID }}
-          PAYPAL_ClientSecret: ${{ secrets.PAYPAL_CLIENT_SECRET }}
+          PAYPAL_CLIENT_ID: ${{ secrets.PAYPAL_CLIENT_ID }}
+          PAYPAL_CLIENT_SECRET: ${{ secrets.PAYPAL_CLIENT_SECRET }}
         run: dotnet test --nologo --no-build --configuration Release
 
   code-style:
