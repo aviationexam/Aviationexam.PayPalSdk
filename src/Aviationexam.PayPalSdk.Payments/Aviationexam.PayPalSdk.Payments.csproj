@@ -86,6 +86,10 @@
     <EmbeddedResource Include="$(PayPalPaymentsOpenApiV2SpecificationFile)" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Aviationexam.PayPalSdk.Common\Aviationexam.PayPalSdk.Common.csproj" />
+  </ItemGroup>
+
   <PropertyGroup>
     <GenerateClient>$(RESTORE_WITH_CLIENT_GENERATION)</GenerateClient>
     <GenerateClient Condition=" '$(GenerateClient)' == '' ">true</GenerateClient>
