@@ -17,7 +17,14 @@ Please refer to the [PayPal REST APIs](https://developer.paypal.com/api/rest/) f
 ### Setting up credentials
 Get client ID and client secret by going to https://developer.paypal.com/dashboard/.
 
-## Examples
+## Install the package
+
+This repository contains the following packages:
+- Aviationexam.PayPalSdk.Common
+- Aviationexam.PayPalSdk.Payments
+- Aviationexam.PayPalSdk.Orders
+
+Common package is required to be installed for other packages to work. Payments contains Payments related APIs. Orders contains Checkout Orders related APIs.
 
 ## Configure library
 
