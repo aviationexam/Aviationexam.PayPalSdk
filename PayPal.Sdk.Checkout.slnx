@@ -23,6 +23,7 @@
   </Folder>
   <Project Path="samples\PayPal.Sdk.Checkout.Samples\PayPal.Sdk.Checkout.Samples.csproj" Type="Classic C#" />
   <Project Path="src\Aviationexam.PayPalSdk.Common\Aviationexam.PayPalSdk.Common.csproj" Type="Classic C#" />
+  <Project Path="src\Aviationexam.PayPalSdk.Orders\Aviationexam.PayPalSdk.Orders.csproj" Type="Classic C#" />
   <Project Path="src\Aviationexam.PayPalSdk.Payments\Aviationexam.PayPalSdk.Payments.csproj" Type="Classic C#" />
   <Project Path="src\PayPal.Sdk.Checkout\PayPal.Sdk.Checkout.csproj" Type="Classic C#" />
   <Project Path="tests\PayPal.Sdk.Checkout.Test\PayPal.Sdk.Checkout.Test.csproj" Type="Classic C#" />

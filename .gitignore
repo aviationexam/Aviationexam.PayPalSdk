@@ -8,6 +8,6 @@ Build/
 **/bin/
 **/*.appsettings.json5
 /src/Aviationexam.PayPalSdk.*/openapi.*.json
-/src/Aviationexam.PayPalSdk.Payments/PayPalPaymentsClientV2/
+/src/Aviationexam.PayPalSdk.*/PayPal*Client*/
 
 .env.*
