@@ -1,5 +1,5 @@
-using Aviationexam.MoneyErp.RestApi.PayPalPaymentsClientV2;
 using Aviationexam.PayPalSdk.Common.Extensions;
+using Aviationexam.PayPalSdk.Payments.PayPalPaymentsClientV2;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Kiota.Abstractions;
 
