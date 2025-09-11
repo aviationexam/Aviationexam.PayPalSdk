@@ -23,27 +23,10 @@
   <Import Project="..\..\WarningConfiguration.targets" />
 
   <PropertyGroup>
-    <GeneratedCodeV1Target>ClientV1</GeneratedCodeV1Target>
-    <GeneratedCodeV2Target>ClientV2</GeneratedCodeV2Target>
-    <MoneyErpOpenApiV1SpecificationUrl>https://demo.moneyerp.cz:82/v1.0/docs/swagger.json</MoneyErpOpenApiV1SpecificationUrl>
-    <MoneyErpOpenApiV2SpecificationUrl>https://demo.moneyerp.cz:82/v2.0/docs/swagger.json</MoneyErpOpenApiV2SpecificationUrl>
-    <MoneyErpOriginalOpenApiV1SpecificationFile>openapi.v1.original.json</MoneyErpOriginalOpenApiV1SpecificationFile>
-    <MoneyErpOriginalOpenApiV2SpecificationFile>openapi.v2.original.json</MoneyErpOriginalOpenApiV2SpecificationFile>
-    <MoneyErpOpenApiV1SpecificationFile>openapi.v1.json</MoneyErpOpenApiV1SpecificationFile>
-    <MoneyErpOpenApiV2SpecificationFile>openapi.v2.json</MoneyErpOpenApiV2SpecificationFile>
-  </PropertyGroup>
-
-  <PropertyGroup>
-    <!-- DefaultJsonSerializerContext configuration is required to generate UseEnumConverters method -->
-    <AVI_EJC_DefaultJsonSerializerContext_ClassAccessibility>internal</AVI_EJC_DefaultJsonSerializerContext_ClassAccessibility>
-    <AVI_EJC_DefaultJsonSerializerContext_Namespace>PayPal.Sdk.Checkout.Core.MessageSerializers</AVI_EJC_DefaultJsonSerializerContext_Namespace>
-    <AVI_EJC_DefaultJsonSerializerContext_ClassName>PayPalJsonSerializerContext</AVI_EJC_DefaultJsonSerializerContext_ClassName>
-
-    <!-- Allowed options BackingType, FirstEnumName. Default value FirstEnumName -->
-    <AVI_EJC_DefaultEnumSerializationStrategy>FirstEnumName</AVI_EJC_DefaultEnumSerializationStrategy>
-
-    <!-- Allowed options UseBackingType, UseEnumName, or UseBackingType|UseEnumName (DeserializationStrategy is Flags enum). Default value UseEnumName -->
-    <AVI_EJC_DefaultEnumDeserializationStrategy>UseBackingType|UseEnumName</AVI_EJC_DefaultEnumDeserializationStrategy>
+    <GeneratedCodePayPalPaymentsV2Target>PayPalPaymentsClientV2</GeneratedCodePayPalPaymentsV2Target>
+    <PayPalPaymentsV2SpecificationUrl>https://raw.githubusercontent.com/paypal/paypal-rest-api-specifications/refs/heads/main/openapi/payments_payment_v2.json</PayPalPaymentsV2SpecificationUrl>
+    <PayPalPaymentsOriginalOpenApiV2SpecificationFile>openapi.payments-payment.v2.original.json</PayPalPaymentsOriginalOpenApiV2SpecificationFile>
+    <PayPalPaymentsOpenApiV2SpecificationFile>openapi.payments-payment.v2.json</PayPalPaymentsOpenApiV2SpecificationFile>
   </PropertyGroup>
 
   <PropertyGroup Label="Configure GitInfo">
@@ -98,5 +81,55 @@
     <PackageReference Include="Microsoft.Extensions.Options" VersionOverride="8.0.2" />
     <PackageReference Include="System.Text.Json" VersionOverride="8.0.6" />
   </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="$(PayPalPaymentsOpenApiV2SpecificationFile)" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <GenerateClient>$(RESTORE_WITH_CLIENT_GENERATION)</GenerateClient>
+    <GenerateClient Condition=" '$(GenerateClient)' == '' ">true</GenerateClient>
+    <KiotaCommand>$(KIOTA_BIN)</KiotaCommand>
+    <KiotaCommand Condition=" '$(KiotaCommand)' == '' ">dotnet kiota</KiotaCommand>
+
+    <KiotaPayPalPaymentsV2Exec>$(KiotaCommand) generate</KiotaPayPalPaymentsV2Exec>
+    <KiotaPayPalPaymentsV2Exec>$(KiotaPayPalPaymentsV2Exec) --openapi $(MSBuildProjectDirectory)/$(PayPalPaymentsOpenApiV2SpecificationFile)</KiotaPayPalPaymentsV2Exec>
+    <KiotaPayPalPaymentsV2Exec>$(KiotaPayPalPaymentsV2Exec) --language csharp</KiotaPayPalPaymentsV2Exec>
+    <KiotaPayPalPaymentsV2Exec>$(KiotaPayPalPaymentsV2Exec) --exclude-backward-compatible</KiotaPayPalPaymentsV2Exec>
+    <KiotaPayPalPaymentsV2Exec>$(KiotaPayPalPaymentsV2Exec) --disable-validation-rules KnownAndNotSupportedFormats</KiotaPayPalPaymentsV2Exec>
+    <KiotaPayPalPaymentsV2Exec>$(KiotaPayPalPaymentsV2Exec) --output $(MSBuildProjectDirectory)/$(GeneratedCodePayPalPaymentsV2Target)</KiotaPayPalPaymentsV2Exec>
+    <KiotaPayPalPaymentsV2Exec>$(KiotaPayPalPaymentsV2Exec) --class-name PayPalPaymentsApiV2Client</KiotaPayPalPaymentsV2Exec>
+    <KiotaPayPalPaymentsV2Exec>$(KiotaPayPalPaymentsV2Exec) --namespace-name Aviationexam.MoneyErp.RestApi.$(GeneratedCodePayPalPaymentsV2Target)</KiotaPayPalPaymentsV2Exec>
+  </PropertyGroup>
+
+  <Target
+    Name="DownloadPayPalPaymentsOpenApiV2Specification"
+    BeforeTargets="Restore;_GenerateRestoreProjectSpec"
+    Condition=" $(GenerateClient) == 'true' And !Exists('$(MSBuildProjectDirectory)/$(PayPalPaymentsOriginalOpenApiV2SpecificationFile)')"
+  >
+    <Message Importance="High" Text="Downloading $(PayPalPaymentsV2SpecificationUrl) to the $(MSBuildProjectDirectory)/$(PayPalPaymentsOriginalOpenApiV2SpecificationFile)" />
+
+    <Exec WorkingDirectory="$(ProjectDir)" Command="curl -sS $(PayPalPaymentsV2SpecificationUrl) --output $(MSBuildProjectDirectory)/$(PayPalPaymentsOriginalOpenApiV2SpecificationFile)" />
+  </Target>
+
+
+  <Target Name="PreprocessPayPalPaymentsOpenApiV2Specification" BeforeTargets="Restore;_GenerateRestoreProjectSpec" AfterTargets="DownloadPayPalPaymentsOpenApiV2Specification" Condition=" $(GenerateClient) == 'true' And !Exists('$(MSBuildProjectDirectory)/$(PayPalPaymentsOpenApiV2SpecificationFile)')">
+    <Message Importance="High" Text="Preprocess $(PayPalPaymentsOriginalOpenApiV2SpecificationFile) to the $(PayPalPaymentsOpenApiV2SpecificationFile)" />
+    <!--Message Importance="High" Text="dotnet run - -project $(ProjectDir)\..\Aviationexam.MoneyErp.PreprocessOpenApi\Aviationexam.MoneyErp.PreprocessOpenApi.csproj -c Release $(MoneyErpOriginalOpenApiV2SpecificationFile) $(MoneyErpOpenApiV2SpecificationFile)" /-->
+
+    <Exec WorkingDirectory="$(ProjectDir)" Command="cp $(PayPalPaymentsOriginalOpenApiV2SpecificationFile) $(PayPalPaymentsOpenApiV2SpecificationFile)" />
+  </Target>
+
+  <Target
+    Name="GeneratePayPalPaymentsOpenApiV2Specification"
+    BeforeTargets="Restore;_GenerateRestoreProjectSpec"
+    AfterTargets="PreprocessPayPalPaymentsOpenApiV2Specification"
+    Condition=" $(GenerateClient) == 'true' And !Exists('$(MSBuildProjectDirectory)/$(GeneratedCodePayPalPaymentsV2Target)')"
+  >
+    <Message Importance="High" Text="Generating client to the $(MSBuildProjectDirectory)/$(GeneratedCodePayPalPaymentsV2Target) using $(KiotaCommand)" />
+    <Message Importance="High" Text="Command: $(KiotaPayPalPaymentsV2Exec)" />
+
+    <Exec WorkingDirectory="$(ProjectDir)" EnvironmentVariables="KIOTA_TUTORIAL_ENABLED=false" Command="$(KiotaPayPalPaymentsV2Exec)" />
+  </Target>
 
 </Project>
