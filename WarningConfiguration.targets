@@ -1,0 +1,47 @@
+<Project>
+
+  <PropertyGroup>
+    <RuntimeIdentifiers>win-x64;linux-x64</RuntimeIdentifiers>
+    <RestoreLockedMode Condition="'$(AGENT_ID)' != ''">true</RestoreLockedMode>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
+    <UseSentryCLI>false</UseSentryCLI>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <WarningsAsErrors>$(WarningsAsErrors),CS4014,NU1603,NU1608,CA1827,CA1860</WarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" $(ProjectName) != '' ">
+    <BaseOutputPath>..\..\Build\$(ProjectName)\</BaseOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Nuget auditing">
+    <!-- Enable NuGet package auditing -->
+    <NuGetAudit>true</NuGetAudit>
+
+    <!-- Audit direct and transitive packages -->
+    <NuGetAuditMode>all</NuGetAuditMode>
+
+    <!-- Report low, moderate, high and critical advisories -->
+    <NuGetAuditLevel>low</NuGetAuditLevel>
+
+    <!-- Fails the build on CI or on release when a vulnerability is detected -->
+    <WarningsAsErrors Condition="$(ContinuousIntegrationBuild) == 'true' OR '$(Configuration)' == 'Release'">
+      (WarningsAsErrors),NU1900,NU1901,NU1902,NU1903,NU1904
+    </WarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Meziantou.Analyzer">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <PropertyGroup Label="Aot ready">
+    <IsAotCompatible>true</IsAotCompatible>
+    <StripSymbols>false</StripSymbols>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,129 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+    <LangVersion>13.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <VersionPrefix>1.0.0</VersionPrefix>
+    <RepositoryUrl>https://github.com/aviationexam/PayPal.Sdk.Checkout</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/aviationexam/PayPal.Sdk.Checkout</PackageProjectUrl>
+    <Title>PayPalCheckoutSdk</Title>
+    <Authors>Aviationexams</Authors>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <ProjectName>PayPal.Sdk.Orders</ProjectName>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Enable AOT">
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <Import Project="..\..\WarningConfiguration.targets" />
+
+  <PropertyGroup>
+    <GeneratedCodeTarget>PayPalCheckoutOrdersClientV2</GeneratedCodeTarget>
+    <PayPalSpecificationUrl>https://raw.githubusercontent.com/paypal/paypal-rest-api-specifications/refs/heads/main/openapi/checkout_orders_v2.json</PayPalSpecificationUrl>
+    <PayPalOriginalOpenApiV2SpecificationFile>openapi.v2.original.json</PayPalOriginalOpenApiV2SpecificationFile>
+    <PayPalOpenApiV2SpecificationFile>openapi.v2.json</PayPalOpenApiV2SpecificationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Configure GitInfo">
+    <GitInfo_RootDirectory>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), 'PayPal.Sdk.Checkout.slnx'))\.git</GitInfo_RootDirectory>
+
+    <GitInfo_Namespace>PayPal.Sdk.Checkout</GitInfo_Namespace>
+
+    <!-- optional, default value 9 -->
+    <GitInfo_CommitAbbreviatedLength>9</GitInfo_CommitAbbreviatedLength>
+
+    <!-- optional, default value true -->
+    <GitInfo_UseCache>true</GitInfo_UseCache>
+
+    <!-- optional, default value false -->
+    <!-- it check only cache existence, not that HEAD equals HEAD in cache -->
+    <GitInfo_UseAggressiveCache>false</GitInfo_UseAggressiveCache>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE.txt" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ZLinq" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net9.0' ">
+    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" VersionOverride="9.0.6" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Http" />
+    <PackageReference Include="Microsoft.Extensions.Options" />
+    <PackageReference Include="System.Text.Json" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net8.0' ">
+    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" VersionOverride="8.0.20" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" VersionOverride="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" VersionOverride="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" VersionOverride="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" VersionOverride="8.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Http" VersionOverride="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Options" VersionOverride="8.0.2" />
+    <PackageReference Include="System.Text.Json" VersionOverride="8.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="$(PayPalOpenApiV2SpecificationFile)" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Aviationexam.PayPalSdk.Common\Aviationexam.PayPalSdk.Common.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <GenerateClient>$(RESTORE_WITH_CLIENT_GENERATION)</GenerateClient>
+    <GenerateClient Condition=" '$(GenerateClient)' == '' ">true</GenerateClient>
+    <KiotaCommand>$(KIOTA_BIN)</KiotaCommand>
+    <KiotaCommand Condition=" '$(KiotaCommand)' == '' ">dotnet kiota</KiotaCommand>
+
+    <KiotaV2Exec>$(KiotaCommand) generate</KiotaV2Exec>
+    <KiotaV2Exec>$(KiotaV2Exec) --openapi $(MSBuildProjectDirectory)/$(PayPalOpenApiV2SpecificationFile)</KiotaV2Exec>
+    <KiotaV2Exec>$(KiotaV2Exec) --language csharp</KiotaV2Exec>
+    <KiotaV2Exec>$(KiotaV2Exec) --exclude-backward-compatible</KiotaV2Exec>
+    <KiotaV2Exec>$(KiotaV2Exec) --disable-validation-rules KnownAndNotSupportedFormats</KiotaV2Exec>
+    <KiotaV2Exec>$(KiotaV2Exec) --output $(MSBuildProjectDirectory)/$(GeneratedCodeTarget)</KiotaV2Exec>
+    <KiotaV2Exec>$(KiotaV2Exec) --class-name PayPalOrdersApiV2Client</KiotaV2Exec>
+    <KiotaV2Exec>$(KiotaV2Exec) --namespace-name Aviationexam.PayPalSdk.Payments.$(GeneratedCodeTarget)</KiotaV2Exec>
+  </PropertyGroup>
+
+  <Target
+    Name="DownloadPayPalOpenApiV2Specification"
+    BeforeTargets="Restore;_GenerateRestoreProjectSpec"
+    Condition=" $(GenerateClient) == 'true' And !Exists('$(MSBuildProjectDirectory)/$(PayPalOriginalOpenApiV2SpecificationFile)')"
+  >
+    <Message Importance="High" Text="Downloading $(PayPalSpecificationUrl) to the $(MSBuildProjectDirectory)/$(PayPalOriginalOpenApiV2SpecificationFile)" />
+
+    <Exec WorkingDirectory="$(ProjectDir)" Command="curl -sS $(PayPalSpecificationUrl) --output $(MSBuildProjectDirectory)/$(PayPalOriginalOpenApiV2SpecificationFile)" />
+  </Target>
+
+  <Target Name="PreprocessPayPalOpenApiV2Specification" BeforeTargets="Restore;_GenerateRestoreProjectSpec" AfterTargets="DownloadPayPalOpenApiV2Specification" Condition=" $(GenerateClient) == 'true' And !Exists('$(MSBuildProjectDirectory)/$(PayPalOpenApiV2SpecificationFile)')">
+    <Message Importance="High" Text="Preprocess $(PayPalOriginalOpenApiV2SpecificationFile) to the $(PayPalOpenApiV2SpecificationFile)" />
+    <!--Message Importance="High" Text="dotnet run - -project $(ProjectDir)\..\Aviationexam.PreprocessOpenApi\Aviationexam.PreprocessOpenApi.csproj -c Release $(PayPalOriginalOpenApiV2SpecificationFile) $(PayPalOpenApiV2SpecificationFile)" /-->
+
+    <Exec WorkingDirectory="$(ProjectDir)" Command="cp $(PayPalOriginalOpenApiV2SpecificationFile) $(PayPalOpenApiV2SpecificationFile)" />
+  </Target>
+
+  <Target
+    Name="GeneratePayPalOpenApiV2Client"
+    BeforeTargets="Restore;_GenerateRestoreProjectSpec"
+    AfterTargets="PreprocessPayPalOpenApiV2Specification"
+    Condition=" $(GenerateClient) == 'true' And !Exists('$(MSBuildProjectDirectory)/$(GeneratedCodeTarget)')"
+  >
+    <Message Importance="High" Text="Generating client to the $(MSBuildProjectDirectory)/$(GeneratedCodeTarget) using $(KiotaCommand)" />
+    <Message Importance="High" Text="Command: $(KiotaV2Exec)" />
+
+    <Exec WorkingDirectory="$(ProjectDir)" EnvironmentVariables="KIOTA_TUTORIAL_ENABLED=false" Command="$(KiotaV2Exec)" />
+  </Target>
+
+</Project>

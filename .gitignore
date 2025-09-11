@@ -2,6 +2,12 @@
 *.sln.DotSettings.user
 formatDiagnosticLog.binlog
 
+Build/
+
 **/obj/
 **/bin/
 **/*.appsettings.json5
+/src/Aviationexam.PayPalSdk.*/openapi.*.json
+/src/Aviationexam.PayPalSdk.*/PayPal*Client*/
+
+.env.*

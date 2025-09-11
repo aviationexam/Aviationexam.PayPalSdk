@@ -18,8 +18,8 @@ jobs:
             8.0.x
             9.0.x
       - uses: actions/checkout@v5
-      - name: Fetch all history for all tags and branches
-        run: git fetch --prune --unshallow
+        with:
+          fetch-depth: 0  # This will fetch the full history
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v4.1.0
         with:
@@ -31,12 +31,17 @@ jobs:
           echo "MajorMinorPatch: ${{ steps.gitversion.outputs.MajorMinorPatch }}"
           echo "FullSemVer: ${{ steps.gitversion.outputs.FullSemVer }}"
           echo "CommitsSinceVersionSource: ${{ steps.gitversion.outputs.CommitsSinceVersionSource }}"
+      - name: Tool restore
+        run: dotnet tool restore
       - name: Restore with .Net
         run: dotnet restore --nologo
       - name: Build with .Net
         run: dotnet build --configuration Release --no-restore --nologo "-p:Version=${{ steps.gitversion.outputs.FullSemVer }}"
       - name: Pack with .Net
-        run: dotnet pack src/PayPal.Sdk.Checkout/PayPal.Sdk.Checkout.csproj --nologo --no-build --configuration Release --output nuget-packages -p:PackageVersion=${{ steps.gitversion.outputs.FullSemVer }}
+        run: |
+          dotnet pack src/Aviationexam.PayPalSdk.Common/Aviationexam.PayPalSdk.Common.csproj --nologo --no-build --configuration Release --output nuget-packages -p:PackageVersion=${{ steps.gitversion.outputs.FullSemVer }}
+          dotnet pack src/Aviationexam.PayPalSdk.Orders/Aviationexam.PayPalSdk.Orders.csproj --nologo --no-build --configuration Release --output nuget-packages -p:PackageVersion=${{ steps.gitversion.outputs.FullSemVer }}
+          dotnet pack src/Aviationexam.PayPalSdk.Payments/Aviationexam.PayPalSdk.Payments.csproj --nologo --no-build --configuration Release --output nuget-packages -p:PackageVersion=${{ steps.gitversion.outputs.FullSemVer }}
       - uses: actions/upload-artifact@v4
         with:
           name: Nuget-packages-${{ steps.gitversion.outputs.FullSemVer }}

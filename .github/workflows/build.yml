@@ -21,8 +21,10 @@ jobs:
             8.0.x
             9.0.x
       - uses: actions/checkout@v5
-      - name: Fetch all history for all tags and branches
-        run: git fetch --prune --unshallow
+        with:
+          fetch-depth: 0  # This will fetch the full history
+      - name: Tool restore
+        run: dotnet tool restore
       - name: Restore
         run: dotnet restore --nologo
       - name: Build
@@ -30,8 +32,8 @@ jobs:
       - name: Test
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PAYPAL_ClientId: ${{ secrets.PAYPAL_CLIENT_ID }}
-          PAYPAL_ClientSecret: ${{ secrets.PAYPAL_CLIENT_SECRET }}
+          PAYPAL_CLIENT_ID: ${{ secrets.PAYPAL_CLIENT_ID }}
+          PAYPAL_CLIENT_SECRET: ${{ secrets.PAYPAL_CLIENT_SECRET }}
         run: dotnet test --nologo --no-build --configuration Release
 
   code-style:

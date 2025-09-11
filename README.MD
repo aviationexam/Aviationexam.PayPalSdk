@@ -1,38 +1,53 @@
 ﻿# REST API SDK for Dotnet V2
 
-[![Build Status](https://github.com/aviationexam/PayPal.Sdk.Checkout/actions/workflows/build.yml/badge.svg?branch=develop)](https://github.com/aviationexam/PayPal.Sdk.Checkout/actions/workflows/build.yml)
-[![NuGet](https://img.shields.io/nuget/v/PayPal.Sdk.Checkout.svg?style=flat-square&label=nuget)](https://www.nuget.org/packages/PayPal.Sdk.Checkout/)
-[![MyGet](https://img.shields.io/myget/paypal-sdk-checkout/vpre/PayPal.Sdk.Checkout?label=MyGet)](https://www.myget.org/feed/paypal-sdk-checkout/package/nuget/PayPal.Sdk.Checkout)
-[![feedz.io](https://img.shields.io/badge/endpoint.svg?url=https%3A%2F%2Ff.feedz.io%2Faviationexam%2Fpaypal-sdk-checkout%2Fshield%2FPayPal.Sdk.Checkout%2Flatest&label=PayPal.Sdk.Checkout)](https://f.feedz.io/aviationexam/paypal-sdk-checkout/packages/PayPal.Sdk.Checkout/latest/download)
+[![Build Status](https://github.com/aviationexam/Aviationexam.PayPalSdk/actions/workflows/build.yml/badge.svg?branch=develop)](https://github.com/aviationexam/Aviationexam.PayPalSdk/actions/workflows/build.yml)
+[![NuGet](https://img.shields.io/nuget/v/Aviationexam.PayPalSdk.Common.svg?style=flat-square&label=nuget)](https://www.nuget.org/packages/Aviationexam.PayPalSdk.Common/)
+[![feedz.io](https://img.shields.io/badge/endpoint.svg?url=https%3A%2F%2Ff.feedz.io%2Faviationexam%2Fpaypal-sdk-checkout%2Fshield%2FAviationexam.PayPalSdk.Common%2Flatest&label=Aviationexam.PayPalSdk.Common)](https://f.feedz.io/aviationexam/paypal-sdk-checkout/packages/Aviationexam.PayPalSdk.Common/latest/download)
 
+__Welcome to PayPal Dotnet SDK__. This repository content is build on top of the [paypal-rest-api-specifications](https://github.com/paypal/paypal-rest-api-specifications/tree/main?tab=readme-ov-file) using [microsoft/kiota](https://github.com/microsoft/kiota).
 
-![Home Image](homepage.jpg)
-
-__Welcome to PayPal Dotnet SDK__. This repository contains PayPal's Dotnet SDK and samples for [v2/checkout/orders](https://developer.paypal.com/docs/api/orders/v2/) and [v2/payments](https://developer.paypal.com/docs/api/payments/v2/) APIs.
-
-This is a part of the next major PayPal SDK. It includes a simplified interface to only provide simple model objects and blueprints for HTTP calls. This repo currently contains functionality for PayPal Checkout APIs which includes [Orders V2](https://developer.paypal.com/docs/api/orders/v2/) and [Payments V2](https://developer.paypal.com/docs/api/payments/v2/).
-
-Please refer to the [PayPal Checkout Integration Guide](https://developer.paypal.com/docs/checkout/) for more information. Also refer to [Setup your SDK](https://developer.paypal.com/docs/checkout/reference/server-integration/setup-sdk/) for additional information about setting up the SDK's.
+Please refer to the [PayPal REST APIs](https://developer.paypal.com/api/rest/) for more information.
 
 ## Prerequisites
 
-.NET Core 3.1, .NET 5.0, or .Net Standard 2.1
-
-An environment which supports TLS 1.2 (see the TLS-update site for more information)
+.NET 8.0, or higher
 
 ## Usage
 
 ### Setting up credentials
-Get client ID and client secret by going to https://developer.paypal.com/developer/applications and generating a REST API app. Get <b>Client ID</b> and <b>Secret</b> from there.
+Get client ID and client secret by going to https://developer.paypal.com/dashboard/.
 
-## Examples
+## Install the package
+
+This repository contains the following packages:
+- Aviationexam.PayPalSdk.Common
+- Aviationexam.PayPalSdk.Payments
+- Aviationexam.PayPalSdk.Orders
+
+Common package is required to be installed for other packages to work. Payments contains Payments related APIs. Orders contains Checkout Orders related APIs.
 
 ## Configure library
 
 ```c#
 void Configure(IServiceCollection serviceCollection)
 {
-    serviceCollection.AddPayPalCheckout(c => configuration.GetSection("MyAppSettingSection").Bind(c));
+    serviceCollection
+        .AddPayPalRestApiClient(
+            builder => builder.Configure(x =>
+            {
+                x.Environment = EPayPalEnvironment.Sandbox;
+                x.Timeout = TimeSpan.FromSeconds(20);
+            }),
+            shouldRedactHeaderValue: shouldRedactHeaderValue
+        )
+        .AddAuthorization(builder => builder.Configure(x =>
+        {
+            x.ClientId = "ClientId";
+            x.ClientSecret = "ClientSecret";
+            x.JwtEarlyExpirationOffset = TimeSpan.FromMinutes(5);
+        }), shouldRedactHeaderValue: shouldRedactHeaderValue)
+        .AddPaymentsApi() // adds payments api
+        .AddCheckoutOrdersApi() // adds checkot orders api
 }
 ```
 
@@ -40,88 +55,112 @@ void Configure(IServiceCollection serviceCollection)
 This will create an order and print order id for the created order
 
 ```c#
-public async static Task<Order> CreateOrder(IPayPalHttpClient payPalHttpClient, AccessToken accessToken)
+public async static Task<Aviationexam.PayPalSdk.Payments.PayPalCheckoutOrdersClientV2.Models.Order?> CreateOrder(PayPalOrdersApiV2Client payPalOrdersApiV2Client)
 {
-    // Construct a request object and set desired parameters
-    // Here, OrdersCreateRequest() creates a POST request to /v2/checkout/orders
-    var order = new OrderRequest
+    var order = new Order_request
     {
-        CheckoutPaymentIntent = EOrderIntent.Capture,
-        PurchaseUnits = new PurchaseUnitRequest[]
-        {
-            new()
+        Intent = Checkout_payment_intent.CAPTURE,
+        PurchaseUnits =
+        [
+            new Purchase_unit_request
             {
                 ReferenceId = "test_ref_id1",
-                AmountWithBreakdown = new AmountWithBreakdown
+                InvoiceId = "123456",
+                Amount = new Amount_with_breakdown
                 {
-                    CurrencyCode = "USD",
-                    Value = "100.00"
-                }
-            }
-        },
-        ApplicationContext = new ApplicationContext
+                    CurrencyCode = "EUR",
+                    Value = "230.00",
+                    Breakdown = new Amount_breakdown
+                    {
+                        ItemTotal = new Money
+                        {
+                            CurrencyCode = "EUR",
+                            Value = "220.00",
+                        },
+                        Shipping = new Money
+                        {
+                            CurrencyCode = "EUR",
+                            Value = "10.00",
+                        },
+                    },
+                },
+                Items =
+                [
+                    new Item
+                    {
+                        Name = "T-shirt",
+                        UnitAmount = new Money
+                        {
+                            CurrencyCode = "EUR",
+                            Value = "20.00",
+                        },
+                        Quantity = "1",
+                        Sku = "sku1",
+                        Category = Item_category.PHYSICAL_GOODS,
+                    },
+                    new Item
+                    {
+                        Name = "Shoes",
+                        UnitAmount = new Money
+                        {
+                            CurrencyCode = "EUR",
+                            Value = "100.00",
+                        },
+                        Quantity = "2",
+                        Sku = "sku2",
+                        Category = Item_category.PHYSICAL_GOODS,
+                    },
+                ],
+            },
+        ],
+        ApplicationContext = new Order_application_context
         {
             ReturnUrl = "https://www.example.com",
-            CancelUrl = "https://www.example.com"
+            CancelUrl = "https://www.example.com",
         },
     };
 
-    var response = await payPalHttpClient.CreateOrderRawAsync(accessToken, request =>
-    {
-        request.SetPreferReturn(EPreferReturn.Representation);
-        request.SetRequestBody(order);
-    });
+    var payPalRequestId = Guid.NewGuid();
+    var createdOrder = await payPalOrdersApiV2Client.V2.Checkout.Orders.PostAsync(
+        BuildRequestBody(),
+        x => x.Headers.Add("PayPal-Request-Id", payPalRequestId.ToString()),
+        cancellationToken: TestContext.Current.CancellationToken
+    );
 
-    var statusCode = response.ResponseStatusCode;
-    var result = response.ResponseBody;
-    Console.WriteLine("Status: {0}", result.Status);
-    Console.WriteLine("Order Id: {0}", result.Id);
-    Console.WriteLine("Intent: {0}", result.Intent);
+    Console.WriteLine("Status: {0}", createdOrder.Status);
+    Console.WriteLine("Order Id: {0}", createdOrder.Id);
     Console.WriteLine("Links:");
-    foreach (LinkDescription link in result.Links)
+    foreach (var link in createdOrder.Links)
     {
          Console.WriteLine("\t{0}: {1}\tCall Type: {2}", link.Rel, link.Href, link.Method);
     }
-    return response.ResponseBody;
+    return createdOrder;
 }
 ```
 
 ### Capturing an Order
 Before capturing an order, order should be approved by the buyer using the approve link in create order response
 ```c#
-public async static Task<Order> CaptureOrder(this IPayPalHttpClient payPalHttpClient, AccessToken accessToken, string orderId)
+public async static Task<Aviationexam.PayPalSdk.Payments.PayPalCheckoutOrdersClientV2.Models.Order?> CaptureOrder(this PayPalOrdersApiV2Client payPalOrdersApiV2Client, string orderId)
 {
-    var response = await payPalHttpClient.CaptureOrderAsync(accessToken, orderId,
-        request => {
-            request.SetRequestBody(new OrderActionRequest());
-        }
-    );
+    var getOrderResponse = await payPalOrdersApiV2Client.V2.Checkout.Orders[createdOrder.Id].GetAsync(cancellationToken: TestContext.Current.CancellationToken);
 
-    var statusCode = response.ResponseStatusCode;
-    var result = response.ResponseBody;
-    Console.WriteLine("Status: {0}", result.Status);
-    Console.WriteLine("Capture Id: {0}", result.Id);
-    return response;
+    if (getOrderResponse.Status is Order_status.APPROVED)
+    {
+        var captureOrderResponse = await payPalOrdersApiV2Client.V2.Checkout.Orders[createdOrder.Id].Capture.PostAsync(
+            new Order_capture_request(),
+            cancellationToken: TestContext.Current.CancellationToken
+        );
+
+        return captureOrderResponse;
+    }
+
+    return null;
 }
 ```
 ## Running tests
 
 To run integration tests using your client id and secret, run the `test`
 ```shell
-PAYPAL_ClientId=YOUR_SANDBOX_CLIENT_ID PAYPAL_ClientSecret=YOUR_SANDBOX_CLIENT_SECRET dotnet test
+PAYPAL_CLIENT_ID=YOUR_SANDBOX_CLIENT_ID PAYPAL_CLIENT_SECRET=YOUR_SANDBOX_CLIENT_SECRET dotnet test
 ```
-
-You may use the client id and secret above for demonstration purposes.
-
-
-## Samples
-
-You can start off by trying out [creating and capturing an order](/samples/PayPal.Sdk.Checkout.Samples/CaptureIntentExamples/RunAllCaptureIntentFlow.cs).
-
-To try out different samples for both create and authorize intent head to [this link](/samples/PayPal.Sdk.Checkout.Samples).
-
-Note: Update the `tests/PayPal.Sdk.Checkout.Test/user.appsettings.json5` or the `sample/PayPal.Sdk.Checkout.Samples/user.appsettings.json5` with your sandbox client credentials.
-
-
-## License
-Code released under [SDK LICENSE](LICENSE)
