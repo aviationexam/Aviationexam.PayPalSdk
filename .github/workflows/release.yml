@@ -17,8 +17,8 @@ jobs:
             8.0.x
             9.0.x
       - uses: actions/checkout@v5
-      - name: Fetch all history for all tags and branches
-        run: git fetch --prune --unshallow
+        with:
+          fetch-depth: 0  # This will fetch the full history
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v4.1.0
         with:
@@ -30,6 +30,8 @@ jobs:
           echo "MajorMinorPatch: ${{ steps.gitversion.outputs.MajorMinorPatch }}"
           echo "FullSemVer: ${{ steps.gitversion.outputs.FullSemVer }}"
           echo "CommitsSinceVersionSource: ${{ steps.gitversion.outputs.CommitsSinceVersionSource }}"
+      - name: Tool restore
+        run: dotnet tool restore
       - name: Restore with .Net
         run: dotnet restore --nologo
       - name: Build with .Net
