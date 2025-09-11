@@ -1,5 +1,6 @@
 using Aviationexam.PayPalSdk.Common.Configuration;
 using Aviationexam.PayPalSdk.Common.Extensions;
+using Aviationexam.PayPalSdk.Orders.Extensions;
 using Aviationexam.PayPalSdk.Payments.Extensions;
 using Meziantou.Extensions.Logging.Xunit.v3;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,7 +22,11 @@ public static class ServiceProviderFactory
         )
         .AddSingleton<TimeProvider>(_ => TimeProvider.System)
         .AddPayPalRestApiClient(
-            builder => builder.Configure(x => { x.Environment = EPayPalEnvironment.Sandbox; }),
+            builder => builder.Configure(x =>
+            {
+                x.Environment = EPayPalEnvironment.Sandbox;
+                x.Timeout = TimeSpan.FromSeconds(20);
+            }),
             shouldRedactHeaderValue: shouldRedactHeaderValue
         )
         .AddAuthorization(builder => builder.Configure(x =>
@@ -31,6 +36,7 @@ public static class ServiceProviderFactory
             x.JwtEarlyExpirationOffset = TimeSpan.FromMinutes(20);
         }), shouldRedactHeaderValue: shouldRedactHeaderValue)
         .AddPaymentsApi()
+        .AddCheckoutOrdersApi()
         .Services
         .BuildServiceProvider();
 }

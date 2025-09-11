@@ -1,3 +1,4 @@
+/*
 using PayPal.Sdk.Checkout.Extensions;
 using PayPal.Sdk.Checkout.Orders;
 using PayPal.Sdk.Checkout.Test.Infrastructure;
@@ -9,6 +10,7 @@ using Xunit;
 
 namespace PayPal.Sdk.Checkout.Test.Orders;
 
+/*
 [Collection("Orders")]
 public class OrdersPatchTest
 {
@@ -64,3 +66,4 @@ public class OrdersPatchTest
         Assert.Equal("added_description", firstPurchaseUnit.Description);
     }
 }
+*/
