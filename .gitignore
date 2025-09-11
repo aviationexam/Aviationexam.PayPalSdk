@@ -7,5 +7,5 @@ Build/
 **/obj/
 **/bin/
 **/*.appsettings.json5
-/src/PayPal.Sdk.Checkout/openapi.*.json
-/src/PayPal.Sdk.Checkout/PayPalPaymentsClientV2/
+/src/Aviationexam.PayPalSdk.*/openapi.*.json
+/src/Aviationexam.PayPalSdk.Payments/PayPalPaymentsClientV2/
