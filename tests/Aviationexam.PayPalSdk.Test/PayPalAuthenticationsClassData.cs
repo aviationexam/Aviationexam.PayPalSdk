@@ -1,11 +1,11 @@
-using PayPal.Sdk.Checkout.Test.Infrastructure;
+using Aviationexam.PayPalSdk.Test.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Nodes;
 using Xunit;
 
-namespace PayPal.Sdk.Checkout.Test;
+namespace Aviationexam.PayPalSdk.Test;
 
 public sealed class PayPalAuthenticationsClassData() : TheoryData<PayPalAuthenticationsClassData.AuthenticationData?>(
     GetData()

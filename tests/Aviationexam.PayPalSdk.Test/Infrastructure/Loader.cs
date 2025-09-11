@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Runtime.CompilerServices;
 
-namespace PayPal.Sdk.Checkout.Test.Infrastructure;
+namespace Aviationexam.PayPalSdk.Test.Infrastructure;
 
 public static class Loader
 {

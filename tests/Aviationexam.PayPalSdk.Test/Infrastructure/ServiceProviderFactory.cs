@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using Xunit;
 
-namespace PayPal.Sdk.Checkout.Test.Infrastructure;
+namespace Aviationexam.PayPalSdk.Test.Infrastructure;
 
 public static class ServiceProviderFactory
 {

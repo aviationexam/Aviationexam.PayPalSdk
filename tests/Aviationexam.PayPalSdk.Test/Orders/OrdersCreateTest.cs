@@ -1,12 +1,12 @@
 using Aviationexam.PayPalSdk.Payments.PayPalCheckoutOrdersClientV2;
 using Aviationexam.PayPalSdk.Payments.PayPalCheckoutOrdersClientV2.Models;
+using Aviationexam.PayPalSdk.Test.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
-using PayPal.Sdk.Checkout.Test.Infrastructure;
 using System;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace PayPal.Sdk.Checkout.Test.Orders;
+namespace Aviationexam.PayPalSdk.Test.Orders;
 
 [Collection("Orders")]
 public class OrdersCreateTest

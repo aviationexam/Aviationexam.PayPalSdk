@@ -1,7 +1,7 @@
 using Aviationexam.PayPalSdk.Common.Authentication;
 using Aviationexam.PayPalSdk.Common.Extensions;
+using Aviationexam.PayPalSdk.Test.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
-using PayPal.Sdk.Checkout.Test.Infrastructure;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -9,7 +9,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace PayPal.Sdk.Checkout.Test;
+namespace Aviationexam.PayPalSdk.Test;
 
 public class AuthorizeTest
 {
