@@ -13,6 +13,7 @@
     <File Path="Directory.Packages.props" />
     <File Path="WarningConfiguration.targets" />
     <File Path=".gitignore" />
+    <File Path=".env.local" />
   </Folder>
   <Folder Name="/Solution Items/GithubWorkflows/">
     <File Path=".github/workflows/build.yml" />
