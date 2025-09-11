@@ -1,0 +1,135 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+    <LangVersion>13.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <VersionPrefix>1.0.0</VersionPrefix>
+    <RepositoryUrl>https://github.com/aviationexam/PayPal.Sdk.Checkout</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/aviationexam/PayPal.Sdk.Checkout</PackageProjectUrl>
+    <Title>PayPalCheckoutSdk</Title>
+    <Authors>Aviationexams</Authors>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <ProjectName>PayPal.Sdk.Payments</ProjectName>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Enable AOT">
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <Import Project="..\..\WarningConfiguration.targets" />
+
+  <PropertyGroup>
+    <GeneratedCodePayPalPaymentsV2Target>PayPalPaymentsClientV2</GeneratedCodePayPalPaymentsV2Target>
+    <PayPalPaymentsV2SpecificationUrl>https://raw.githubusercontent.com/paypal/paypal-rest-api-specifications/refs/heads/main/openapi/payments_payment_v2.json</PayPalPaymentsV2SpecificationUrl>
+    <PayPalPaymentsOriginalOpenApiV2SpecificationFile>openapi.payments-payment.v2.original.json</PayPalPaymentsOriginalOpenApiV2SpecificationFile>
+    <PayPalPaymentsOpenApiV2SpecificationFile>openapi.payments-payment.v2.json</PayPalPaymentsOpenApiV2SpecificationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Configure GitInfo">
+    <GitInfo_RootDirectory>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), 'PayPal.Sdk.Checkout.slnx'))\.git</GitInfo_RootDirectory>
+
+    <GitInfo_Namespace>PayPal.Sdk.Checkout</GitInfo_Namespace>
+
+    <!-- optional, default value 9 -->
+    <GitInfo_CommitAbbreviatedLength>9</GitInfo_CommitAbbreviatedLength>
+
+    <!-- optional, default value true -->
+    <GitInfo_UseCache>true</GitInfo_UseCache>
+
+    <!-- optional, default value false -->
+    <!-- it check only cache existence, not that HEAD equals HEAD in cache -->
+    <GitInfo_UseAggressiveCache>false</GitInfo_UseAggressiveCache>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE.txt" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Kiota.Abstractions" />
+    <PackageReference Include="Microsoft.Kiota.Http.HttpClientLibrary" />
+    <PackageReference Include="Microsoft.Kiota.Serialization.Form" />
+    <PackageReference Include="Microsoft.Kiota.Serialization.Json" />
+    <PackageReference Include="Microsoft.Kiota.Serialization.Multipart" />
+    <PackageReference Include="Microsoft.Kiota.Serialization.Text" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ZLinq" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net9.0' ">
+    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" VersionOverride="9.0.6" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Http" />
+    <PackageReference Include="Microsoft.Extensions.Options" />
+    <PackageReference Include="System.Text.Json" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net8.0' ">
+    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" VersionOverride="8.0.20" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" VersionOverride="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" VersionOverride="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" VersionOverride="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" VersionOverride="8.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Http" VersionOverride="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Options" VersionOverride="8.0.2" />
+    <PackageReference Include="System.Text.Json" VersionOverride="8.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="$(PayPalPaymentsOpenApiV2SpecificationFile)" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <GenerateClient>$(RESTORE_WITH_CLIENT_GENERATION)</GenerateClient>
+    <GenerateClient Condition=" '$(GenerateClient)' == '' ">true</GenerateClient>
+    <KiotaCommand>$(KIOTA_BIN)</KiotaCommand>
+    <KiotaCommand Condition=" '$(KiotaCommand)' == '' ">dotnet kiota</KiotaCommand>
+
+    <KiotaPayPalPaymentsV2Exec>$(KiotaCommand) generate</KiotaPayPalPaymentsV2Exec>
+    <KiotaPayPalPaymentsV2Exec>$(KiotaPayPalPaymentsV2Exec) --openapi $(MSBuildProjectDirectory)/$(PayPalPaymentsOpenApiV2SpecificationFile)</KiotaPayPalPaymentsV2Exec>
+    <KiotaPayPalPaymentsV2Exec>$(KiotaPayPalPaymentsV2Exec) --language csharp</KiotaPayPalPaymentsV2Exec>
+    <KiotaPayPalPaymentsV2Exec>$(KiotaPayPalPaymentsV2Exec) --exclude-backward-compatible</KiotaPayPalPaymentsV2Exec>
+    <KiotaPayPalPaymentsV2Exec>$(KiotaPayPalPaymentsV2Exec) --disable-validation-rules KnownAndNotSupportedFormats</KiotaPayPalPaymentsV2Exec>
+    <KiotaPayPalPaymentsV2Exec>$(KiotaPayPalPaymentsV2Exec) --output $(MSBuildProjectDirectory)/$(GeneratedCodePayPalPaymentsV2Target)</KiotaPayPalPaymentsV2Exec>
+    <KiotaPayPalPaymentsV2Exec>$(KiotaPayPalPaymentsV2Exec) --class-name PayPalPaymentsApiV2Client</KiotaPayPalPaymentsV2Exec>
+    <KiotaPayPalPaymentsV2Exec>$(KiotaPayPalPaymentsV2Exec) --namespace-name Aviationexam.MoneyErp.RestApi.$(GeneratedCodePayPalPaymentsV2Target)</KiotaPayPalPaymentsV2Exec>
+  </PropertyGroup>
+
+  <Target
+    Name="DownloadPayPalPaymentsOpenApiV2Specification"
+    BeforeTargets="Restore;_GenerateRestoreProjectSpec"
+    Condition=" $(GenerateClient) == 'true' And !Exists('$(MSBuildProjectDirectory)/$(PayPalPaymentsOriginalOpenApiV2SpecificationFile)')"
+  >
+    <Message Importance="High" Text="Downloading $(PayPalPaymentsV2SpecificationUrl) to the $(MSBuildProjectDirectory)/$(PayPalPaymentsOriginalOpenApiV2SpecificationFile)" />
+
+    <Exec WorkingDirectory="$(ProjectDir)" Command="curl -sS $(PayPalPaymentsV2SpecificationUrl) --output $(MSBuildProjectDirectory)/$(PayPalPaymentsOriginalOpenApiV2SpecificationFile)" />
+  </Target>
+
+
+  <Target Name="PreprocessPayPalPaymentsOpenApiV2Specification" BeforeTargets="Restore;_GenerateRestoreProjectSpec" AfterTargets="DownloadPayPalPaymentsOpenApiV2Specification" Condition=" $(GenerateClient) == 'true' And !Exists('$(MSBuildProjectDirectory)/$(PayPalPaymentsOpenApiV2SpecificationFile)')">
+    <Message Importance="High" Text="Preprocess $(PayPalPaymentsOriginalOpenApiV2SpecificationFile) to the $(PayPalPaymentsOpenApiV2SpecificationFile)" />
+    <!--Message Importance="High" Text="dotnet run - -project $(ProjectDir)\..\Aviationexam.MoneyErp.PreprocessOpenApi\Aviationexam.MoneyErp.PreprocessOpenApi.csproj -c Release $(MoneyErpOriginalOpenApiV2SpecificationFile) $(MoneyErpOpenApiV2SpecificationFile)" /-->
+
+    <Exec WorkingDirectory="$(ProjectDir)" Command="cp $(PayPalPaymentsOriginalOpenApiV2SpecificationFile) $(PayPalPaymentsOpenApiV2SpecificationFile)" />
+  </Target>
+
+  <Target
+    Name="GeneratePayPalPaymentsOpenApiV2Specification"
+    BeforeTargets="Restore;_GenerateRestoreProjectSpec"
+    AfterTargets="PreprocessPayPalPaymentsOpenApiV2Specification"
+    Condition=" $(GenerateClient) == 'true' And !Exists('$(MSBuildProjectDirectory)/$(GeneratedCodePayPalPaymentsV2Target)')"
+  >
+    <Message Importance="High" Text="Generating client to the $(MSBuildProjectDirectory)/$(GeneratedCodePayPalPaymentsV2Target) using $(KiotaCommand)" />
+    <Message Importance="High" Text="Command: $(KiotaPayPalPaymentsV2Exec)" />
+
+    <Exec WorkingDirectory="$(ProjectDir)" EnvironmentVariables="KIOTA_TUTORIAL_ENABLED=false" Command="$(KiotaPayPalPaymentsV2Exec)" />
+  </Target>
+
+</Project>
