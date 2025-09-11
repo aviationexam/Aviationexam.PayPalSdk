@@ -1,18 +1,89 @@
 root = true
 
 [*]
-charset = utf-8
 end_of_line = crlf
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-[{*.csproj, *.targets}]
+[{*.csproj, *.targets, *.props, *.config}]
+charset = utf-8
 indent_style = space
 indent_size = 2
 
 [*.cs]
+charset = utf-8
 indent_style = space
 indent_size = 4
+max_line_length = 200
 
-# Space preferences
 csharp_space_after_cast = true
+dotnet_sort_system_directives_first = false
+dotnet_separate_import_directive_groups = false
+
+csharp_indent_case_contents_when_block = true
+csharp_style_pattern_matching_over_is_with_cast_check = true:suggestion
+csharp_style_pattern_matching_over_as_with_null_check = true:suggestion
+
+dotnet_diagnostic.CA1507.severity = error
+dotnet_diagnostic.CA1852.severity = warning
+
+dotnet_diagnostic.CA2000.severity = error
+dotnet_diagnostic.CA2012.severity = error
+dotnet_diagnostic.CA2016.severity = error
+
+dotnet_diagnostic.CA2213.severity = error
+dotnet_diagnostic.CA2215.severity = error
+dotnet_diagnostic.CA2217.severity = error
+dotnet_diagnostic.CA2234.severity = error
+
+dotnet_diagnostic.CA5350.severity = error
+dotnet_diagnostic.CA5351.severity = error
+dotnet_diagnostic.CA5358.severity = error
+dotnet_diagnostic.CA5359.severity = error
+dotnet_diagnostic.CA5364.severity = error
+dotnet_diagnostic.CA5384.severity = error
+dotnet_diagnostic.CA5394.severity = error
+
+dotnet_diagnostic.RMG012.severity = error # Unmapped target member
+dotnet_diagnostic.RMG020.severity = error # Unmapped source member
+dotnet_diagnostic.RMG037.severity = error # An enum member could not be found on the source enum
+dotnet_diagnostic.RMG038.severity = error # An enum member could not be found on the target enum
+
+# Meziantou.Analyzer
+dotnet_diagnostic.MA0001.severity = none
+dotnet_diagnostic.MA0002.severity = none
+dotnet_diagnostic.MA0004.severity = none
+dotnet_diagnostic.MA0006.severity = none
+dotnet_diagnostic.MA0011.severity = none
+dotnet_diagnostic.MA0012.severity = none
+dotnet_diagnostic.MA0015.severity = none
+dotnet_diagnostic.MA0025.severity = none
+dotnet_diagnostic.MA0026.severity = none
+dotnet_diagnostic.MA0029.severity = none
+dotnet_diagnostic.MA0051.severity = none
+dotnet_diagnostic.MA0061.severity = none
+dotnet_diagnostic.MA0065.severity = none
+dotnet_diagnostic.MA0074.severity = none
+dotnet_diagnostic.MA0076.severity = none
+
+[*.cshtml]
+charset = utf-8
+indent_style = space
+indent_size = 2
+
+[*.liquid]
+charset = utf-8
+indent_style = space
+indent_size = 4
+insert_final_newline = false
+
+[*.resx]
+charset = utf-8
+indent_style = space
+indent_size = 2
+
+[*.ps1]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 4
