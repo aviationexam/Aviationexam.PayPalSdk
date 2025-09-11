@@ -5,9 +5,9 @@ using Microsoft.Kiota.Abstractions;
 
 namespace Aviationexam.PayPalSdk.Orders.Extensions;
 
-public static class PayPalPaymentsDependencyInjectionExtensions
+public static class PayPalCheckoutOrdersDependencyInjectionExtensions
 {
-    public static PayPalBuilder AddPaymentsApi(
+    public static PayPalBuilder AddCheckoutOrdersApi(
         this PayPalBuilder builder
     )
     {
