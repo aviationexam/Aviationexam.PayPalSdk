@@ -6,12 +6,7 @@ namespace Aviationexam.PayPalSdk.Common.Configuration;
 
 public class PayPalResApiOptions
 {
-    public string LiveEndpoint { get; set; } = "https://api-m.paypal.com";
-
-    public string SandboxEndpoint { get; set; } = "https://api-m.sandbox.paypal.com";
-
-    [Required]
-    public EPayPalEnvironment Environment { get; set; } = EPayPalEnvironment.Sandbox;
+    public required EPayPalEnvironment Environment { get; set; }
 
     [Required]
     public TimeSpan Timeout { get; set; }
@@ -21,6 +16,4 @@ public class PayPalResApiOptions
 
     [Required]
     public IReadOnlyCollection<string> AllowedHosts { get; set; } = null!;
-
-
 }
