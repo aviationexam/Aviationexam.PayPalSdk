@@ -21,7 +21,7 @@ public sealed class TokenResponse
     public required int ExpiresIn { get; set; }
 
     [JsonPropertyName("nonce")]
-    public required int Nonce { get; set; }
+    public required string Nonce { get; set; }
 
     public TimeSpan ExpiresInTimeSpan => TimeSpan.FromSeconds(ExpiresIn);
 }
