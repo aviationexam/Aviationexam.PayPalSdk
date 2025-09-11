@@ -13,12 +13,13 @@ public static class DependencyInjectionExtensions
 {
     public static IServiceCollection AddPayPalCheckout(
         this IServiceCollection services,
-        Action<PayPalOptions>? configure = null
+        Action<OptionsBuilder<PayPalOptions>>? configureOptions = null
     )
     {
-        if (configure != null)
+        if (configureOptions != null)
         {
-            services.Configure(configure);
+            var options = services.AddOptions<PayPalOptions>();
+            configureOptions(options);
         }
 
         services.AddScoped<IPayPayEncoder, PayPayEncoder>();

@@ -29,7 +29,7 @@ public static class TestHttpClientFactory
 
         var serviceCollection = new ServiceCollection();
 
-        serviceCollection.AddPayPalCheckout(c => configuration.Bind(c));
+        serviceCollection.AddPayPalCheckout(builder => configuration.Bind(builder));
 
         serviceCollection.AddLogging(loggingBuilder =>
         {
