@@ -21,7 +21,6 @@
     <File Path=".github/workflows/pr-build.yml" />
     <File Path=".github/workflows/release.yml" />
   </Folder>
-  <Project Path="samples\PayPal.Sdk.Checkout.Samples\PayPal.Sdk.Checkout.Samples.csproj" Type="Classic C#" />
   <Project Path="src\Aviationexam.PayPalSdk.Common\Aviationexam.PayPalSdk.Common.csproj" Type="Classic C#" />
   <Project Path="src\Aviationexam.PayPalSdk.Orders\Aviationexam.PayPalSdk.Orders.csproj" Type="Classic C#" />
   <Project Path="src\Aviationexam.PayPalSdk.Payments\Aviationexam.PayPalSdk.Payments.csproj" Type="Classic C#" />
