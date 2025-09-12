@@ -4,7 +4,7 @@
     <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="Meziantou.Analyzer" Version="2.0.205" />
+    <PackageVersion Include="Meziantou.Analyzer" Version="2.0.218" />
   </ItemGroup>
   <ItemGroup>
     <PackageVersion Include="Microsoft.AspNetCore.WebUtilities" Version="9.0.9" />
@@ -24,21 +24,21 @@
     <PackageVersion Include="System.Text.Json" Version="9.0.9" />
   </ItemGroup>
   <ItemGroup>
-    <PackageVersion Include="Microsoft.Kiota.Abstractions" Version="1.19.0" />
-    <PackageVersion Include="Microsoft.Kiota.Http.HttpClientLibrary" Version="1.19.0" />
-    <PackageVersion Include="Microsoft.Kiota.Serialization.Form" Version="1.19.0" />
-    <PackageVersion Include="Microsoft.Kiota.Serialization.Json" Version="1.19.0" />
-    <PackageVersion Include="Microsoft.Kiota.Serialization.Text" Version="1.19.0" />
-    <PackageVersion Include="Microsoft.Kiota.Serialization.Multipart" Version="1.19.0" />
+    <PackageVersion Include="Microsoft.Kiota.Abstractions" Version="1.19.1" />
+    <PackageVersion Include="Microsoft.Kiota.Http.HttpClientLibrary" Version="1.19.1" />
+    <PackageVersion Include="Microsoft.Kiota.Serialization.Form" Version="1.19.1" />
+    <PackageVersion Include="Microsoft.Kiota.Serialization.Json" Version="1.19.1" />
+    <PackageVersion Include="Microsoft.Kiota.Serialization.Text" Version="1.19.1" />
+    <PackageVersion Include="Microsoft.Kiota.Serialization.Multipart" Version="1.19.1" />
   </ItemGroup>
   <ItemGroup>
-    <PackageVersion Include="ZLinq" Version="1.4.12" />
+    <PackageVersion Include="ZLinq" Version="1.5.2" />
   </ItemGroup>
   <ItemGroup>
     <PackageVersion Include="Castle.Core" Version="5.2.1" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
-    <PackageVersion Include="xunit.v3" Version="2.0.3" />
-    <PackageVersion Include="Meziantou.Extensions.Logging.Xunit.v3" Version="1.1.6" />
+    <PackageVersion Include="xunit.v3" Version="3.0.1" />
+    <PackageVersion Include="Meziantou.Extensions.Logging.Xunit.v3" Version="1.1.13" />
     <PackageVersion Include="NSubstitute" Version="5.3.0" />
     <PackageVersion Include="NSubstitute.Analyzers.CSharp" Version="1.0.17" />
   </ItemGroup>
