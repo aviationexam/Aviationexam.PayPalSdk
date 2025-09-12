@@ -1,3 +1,5 @@
+using Aviationexam.PayPalSdk.Common;
+using Aviationexam.PayPalSdk.Common.Extensions;
 using Aviationexam.PayPalSdk.Payments.PayPalCheckoutOrdersClientV2;
 using Aviationexam.PayPalSdk.Payments.PayPalCheckoutOrdersClientV2.Models;
 using Aviationexam.PayPalSdk.Test.Infrastructure;
@@ -87,16 +89,23 @@ public class OrdersCreateTest
 
         var payPalOrdersApiV2Client = serviceProvider.GetRequiredService<PayPalOrdersApiV2Client>();
 
+        Order_request orderRequest = BuildRequestBody();
         var payPalRequestId = Guid.NewGuid();
         var createdOrder = await payPalOrdersApiV2Client.V2.Checkout.Orders.PostAsync(
-            BuildRequestBody(),
-            x => x.Headers.Add("PayPal-Request-Id", payPalRequestId.ToString()),
+            orderRequest,
+            x => x
+                .SetPayPalRequestId(payPalRequestId.ToString())
+                .SetPreferReturn(EPreferReturn.Representation),
             cancellationToken: TestContext.Current.CancellationToken
         );
 
         Assert.NotNull(createdOrder);
         Assert.NotNull(createdOrder.Id);
         Assert.Equal(Order_status.CREATED, createdOrder.Status);
+
+        Assert.NotNull(createdOrder.PurchaseUnits);
+        var purchaseUnits = Assert.Single(createdOrder.PurchaseUnits);
+        Assert.Equal(orderRequest.PurchaseUnits![0].InvoiceId, purchaseUnits.InvoiceId);
 
         Assert.NotNull(createdOrder.Links);
 
