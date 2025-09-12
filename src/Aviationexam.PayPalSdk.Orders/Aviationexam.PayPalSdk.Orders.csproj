@@ -65,11 +65,15 @@
   <ItemGroup Condition=" '$(TargetFramework)' == 'net8.0' ">
     <PackageReference Include="Microsoft.AspNetCore.WebUtilities" VersionOverride="8.0.20" />
     <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" VersionOverride="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" VersionOverride="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" VersionOverride="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" VersionOverride="8.0.2" />
     <PackageReference Include="Microsoft.Extensions.Logging" VersionOverride="8.0.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" VersionOverride="8.0.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" VersionOverride="8.0.2" />
     <PackageReference Include="Microsoft.Extensions.Http" VersionOverride="8.0.1" />
     <PackageReference Include="Microsoft.Extensions.Options" VersionOverride="8.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Primitives" VersionOverride="8.0.0" />
     <PackageReference Include="System.Text.Json" VersionOverride="8.0.6" />
   </ItemGroup>
 
