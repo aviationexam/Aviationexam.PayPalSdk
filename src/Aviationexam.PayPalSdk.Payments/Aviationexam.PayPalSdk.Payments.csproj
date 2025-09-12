@@ -4,6 +4,7 @@
     <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
     <LangVersion>13.0</LangVersion>
     <Nullable>enable</Nullable>
+    <ImplicitUsings>false</ImplicitUsings>
     <VersionPrefix>1.0.0</VersionPrefix>
     <RepositoryUrl>https://github.com/aviationexam/PayPal.Sdk.Checkout</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
