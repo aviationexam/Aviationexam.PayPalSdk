@@ -389,8 +389,7 @@
           "Microsoft.Kiota.Serialization.Json": "[1.19.1, )",
           "Microsoft.Kiota.Serialization.Multipart": "[1.19.1, )",
           "Microsoft.Kiota.Serialization.Text": "[1.19.1, )",
-          "System.Text.Json": "[8.0.6, )",
-          "ZLinq": "[1.5.2, )"
+          "System.Text.Json": "[8.0.6, )"
         }
       },
       "aviationexam.paypalsdk.orders": {
@@ -408,8 +407,7 @@
           "Microsoft.Extensions.Logging.Abstractions": "[8.0.3, )",
           "Microsoft.Extensions.Options": "[8.0.2, )",
           "Microsoft.Extensions.Primitives": "[8.0.0, )",
-          "System.Text.Json": "[8.0.6, )",
-          "ZLinq": "[1.5.2, )"
+          "System.Text.Json": "[8.0.6, )"
         }
       },
       "aviationexam.paypalsdk.payments": {
@@ -427,8 +425,7 @@
           "Microsoft.Extensions.Logging.Abstractions": "[8.0.3, )",
           "Microsoft.Extensions.Options": "[8.0.2, )",
           "Microsoft.Extensions.Primitives": "[8.0.0, )",
-          "System.Text.Json": "[8.0.6, )",
-          "ZLinq": "[1.5.2, )"
+          "System.Text.Json": "[8.0.6, )"
         }
       },
       "Microsoft.Bcl.AsyncInterfaces": {
@@ -490,12 +487,6 @@
         "dependencies": {
           "Microsoft.Kiota.Abstractions": "1.19.1"
         }
-      },
-      "ZLinq": {
-        "type": "CentralTransitive",
-        "requested": "[1.5.2, )",
-        "resolved": "1.5.2",
-        "contentHash": "Zd/afYvmwHMzAWFhK9XAEW9BN4iqXswuWUNsaVFPy4INnxZe/HdbC/DTMUkxmeG+8vPc/8VFVWnCvEYQcRwwmw=="
       }
     },
     "net8.0/linux-x64": {
@@ -916,8 +907,7 @@
           "Microsoft.Kiota.Serialization.Json": "[1.19.1, )",
           "Microsoft.Kiota.Serialization.Multipart": "[1.19.1, )",
           "Microsoft.Kiota.Serialization.Text": "[1.19.1, )",
-          "System.Text.Json": "[9.0.9, )",
-          "ZLinq": "[1.5.2, )"
+          "System.Text.Json": "[9.0.9, )"
         }
       },
       "aviationexam.paypalsdk.orders": {
@@ -928,8 +918,7 @@
           "Microsoft.Extensions.DependencyInjection.Abstractions": "[9.0.9, )",
           "Microsoft.Extensions.Http": "[9.0.9, )",
           "Microsoft.Extensions.Options": "[9.0.9, )",
-          "System.Text.Json": "[9.0.9, )",
-          "ZLinq": "[1.5.2, )"
+          "System.Text.Json": "[9.0.9, )"
         }
       },
       "aviationexam.paypalsdk.payments": {
@@ -940,8 +929,7 @@
           "Microsoft.Extensions.DependencyInjection.Abstractions": "[9.0.9, )",
           "Microsoft.Extensions.Http": "[9.0.9, )",
           "Microsoft.Extensions.Options": "[9.0.9, )",
-          "System.Text.Json": "[9.0.9, )",
-          "ZLinq": "[1.5.2, )"
+          "System.Text.Json": "[9.0.9, )"
         }
       },
       "Microsoft.Bcl.AsyncInterfaces": {
@@ -1024,12 +1012,6 @@
         "requested": "[9.0.9, )",
         "resolved": "9.0.9",
         "contentHash": "NEnpppwq67fRz/OvQRxsEMgetDJsxlxpEsAFO/4PZYbAyAMd4Ol6KS7phc8uDoKPsnbdzRLKobpX303uQwCqdg=="
-      },
-      "ZLinq": {
-        "type": "CentralTransitive",
-        "requested": "[1.5.2, )",
-        "resolved": "1.5.2",
-        "contentHash": "Zd/afYvmwHMzAWFhK9XAEW9BN4iqXswuWUNsaVFPy4INnxZe/HdbC/DTMUkxmeG+8vPc/8VFVWnCvEYQcRwwmw=="
       }
     },
     "net9.0/linux-x64": {

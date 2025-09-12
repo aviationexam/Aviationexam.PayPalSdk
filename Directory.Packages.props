@@ -32,9 +32,6 @@
     <PackageVersion Include="Microsoft.Kiota.Serialization.Multipart" Version="1.19.1" />
   </ItemGroup>
   <ItemGroup>
-    <PackageVersion Include="ZLinq" Version="1.5.2" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageVersion Include="Castle.Core" Version="5.2.1" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
     <PackageVersion Include="xunit.v3" Version="3.0.1" />
