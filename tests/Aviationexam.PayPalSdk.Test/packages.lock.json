@@ -389,7 +389,6 @@
         "type": "Project",
         "dependencies": {
           "Aviationexam.PayPalSdk.Common": "[1.0.0, )",
-          "Microsoft.AspNetCore.WebUtilities": "[8.0.20, )",
           "Microsoft.Extensions.Caching.Abstractions": "[8.0.0, )",
           "Microsoft.Extensions.Configuration": "[8.0.0, )",
           "Microsoft.Extensions.Configuration.Abstractions": "[8.0.0, )",
@@ -408,7 +407,6 @@
         "type": "Project",
         "dependencies": {
           "Aviationexam.PayPalSdk.Common": "[1.0.0, )",
-          "Microsoft.AspNetCore.WebUtilities": "[8.0.20, )",
           "Microsoft.Extensions.Caching.Abstractions": "[8.0.0, )",
           "Microsoft.Extensions.Configuration": "[8.0.0, )",
           "Microsoft.Extensions.Configuration.Abstractions": "[8.0.0, )",
@@ -759,14 +757,6 @@
         "resolved": "9.0.9",
         "contentHash": "z4pyMePOrl733ltTowbN565PxBw1oAr8IHmIXNDiDqd22nFpYltX9KhrNC/qBWAG1/Zx5MHX+cOYhWJQYCO/iw=="
       },
-      "Microsoft.Net.Http.Headers": {
-        "type": "Transitive",
-        "resolved": "9.0.9",
-        "contentHash": "XEQbq25AU2r4WzYpwhyMQZ9PSOaLTkNtfd4DeJ4x5Bsk9bHUyyZhgutki/cyeY+itARWiLyaM91TsKUeFjBb9w==",
-        "dependencies": {
-          "Microsoft.Extensions.Primitives": "9.0.9"
-        }
-      },
       "Microsoft.Testing.Extensions.TrxReport.Abstractions": {
         "type": "Transitive",
         "resolved": "1.6.3",
@@ -869,7 +859,6 @@
         "type": "Project",
         "dependencies": {
           "Aviationexam.PayPalSdk.Common": "[1.0.0, )",
-          "Microsoft.AspNetCore.WebUtilities": "[9.0.6, )",
           "Microsoft.Extensions.Caching.Abstractions": "[9.0.9, )",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "[9.0.9, )",
           "Microsoft.Extensions.Http": "[9.0.9, )",
@@ -882,22 +871,12 @@
         "type": "Project",
         "dependencies": {
           "Aviationexam.PayPalSdk.Common": "[1.0.0, )",
-          "Microsoft.AspNetCore.WebUtilities": "[9.0.6, )",
           "Microsoft.Extensions.Caching.Abstractions": "[9.0.9, )",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "[9.0.9, )",
           "Microsoft.Extensions.Http": "[9.0.9, )",
           "Microsoft.Extensions.Options": "[9.0.9, )",
           "System.Text.Json": "[9.0.9, )",
           "ZLinq": "[1.4.12, )"
-        }
-      },
-      "Microsoft.AspNetCore.WebUtilities": {
-        "type": "CentralTransitive",
-        "requested": "[9.0.9, )",
-        "resolved": "9.0.9",
-        "contentHash": "nRywCuHOoKEqrdWDsQUaaA73nPSSMMu5RvkvidaE5FyRGFTpOh+f6uZkixUsYennTCwsOiVbijeoDam1PtRJaQ==",
-        "dependencies": {
-          "Microsoft.Net.Http.Headers": "9.0.9"
         }
       },
       "Microsoft.Bcl.AsyncInterfaces": {
