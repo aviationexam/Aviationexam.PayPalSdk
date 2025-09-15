@@ -32,6 +32,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Aviationexam.PayPalSdk.Common\Aviationexam.PayPalSdk.Common.csproj" />
+    <ProjectReference Include="..\..\src\Aviationexam.PayPalSdk.Orders\Aviationexam.PayPalSdk.Orders.csproj" />
+    <ProjectReference Include="..\..\src\Aviationexam.PayPalSdk.Payments\Aviationexam.PayPalSdk.Payments.csproj" />
   </ItemGroup>
 
 </Project>
