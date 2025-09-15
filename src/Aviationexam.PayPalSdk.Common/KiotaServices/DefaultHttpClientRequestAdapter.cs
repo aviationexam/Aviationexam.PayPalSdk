@@ -11,13 +11,13 @@ public class DefaultHttpClientRequestAdapter(
     [FromKeyedServices(DependencyInjectionExtensions.PayPalServiceKey)]
     IAuthenticationProvider authenticationProvider,
     [FromKeyedServices(DependencyInjectionExtensions.PayPalServiceKey)]
-    IParseNodeFactory? parseNodeFactory = null,
+    IParseNodeFactory parseNodeFactory,
     [FromKeyedServices(DependencyInjectionExtensions.PayPalServiceKey)]
-    ISerializationWriterFactory? serializationWriterFactory = null,
+    ISerializationWriterFactory serializationWriterFactory,
     [FromKeyedServices(DependencyInjectionExtensions.PayPalRestApiHttpClient)]
-    HttpClient? httpClient = null,
+    HttpClient httpClient,
     [FromKeyedServices(DependencyInjectionExtensions.PayPalServiceKey)]
-    ObservabilityOptions? observabilityOptions = null
+    ObservabilityOptions observabilityOptions
 ) : HttpClientRequestAdapter(
     authenticationProvider, parseNodeFactory, serializationWriterFactory, httpClient, observabilityOptions
 );

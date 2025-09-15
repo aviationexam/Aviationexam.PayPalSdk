@@ -1,3 +1,3 @@
 <Project>
-    <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), 'PayPal.Sdk.Checkout.slnx'))\props\PayPal.props" />
+    <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), 'Aviationexam.PayPalSdk.slnx'))\props\PayPal.props" />
 </Project>
