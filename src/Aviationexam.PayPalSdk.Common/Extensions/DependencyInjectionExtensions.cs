@@ -8,6 +8,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Authentication;
+using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Http.HttpClientLibrary;
 using System;
 using System.Net;
 using System.Net.Http;
@@ -80,6 +82,9 @@ public static class DependencyInjectionExtensions
             .Singleton<IValidateOptions<PayPalResApiOptions>, PayPalResApiOptionsValidate>()
         );
 
+        serviceCollection.TryAddKeyedTransient<IParseNodeFactory>(serviceKey: PayPalServiceKey, (_, _) => ParseNodeFactoryRegistry.DefaultInstance);
+        serviceCollection.TryAddKeyedTransient<ISerializationWriterFactory>(serviceKey: PayPalServiceKey, (_, _) => SerializationWriterFactoryRegistry.DefaultInstance);
+        serviceCollection.TryAddKeyedTransient<ObservabilityOptions, ObservabilityOptions>(serviceKey: PayPalServiceKey);
         serviceCollection.TryAddKeyedTransient<IRequestAdapter, DefaultHttpClientRequestAdapter>(PayPalServiceKey);
         serviceCollection.TryAddKeyedSingleton<IAuthenticationProvider, DefaultAuthenticationProvider>(PayPalServiceKey);
         serviceCollection.TryAddKeyedSingleton<IAccessTokenProvider, DefaultAccessTokenProvider>(PayPalServiceKey);

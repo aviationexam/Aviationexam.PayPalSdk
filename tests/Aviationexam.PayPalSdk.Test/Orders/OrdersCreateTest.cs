@@ -89,7 +89,7 @@ public class OrdersCreateTest
 
         var payPalOrdersApiV2Client = serviceProvider.GetRequiredService<PayPalOrdersApiV2Client>();
 
-        Order_request orderRequest = BuildRequestBody();
+        var orderRequest = BuildRequestBody();
         var payPalRequestId = Guid.NewGuid();
         var createdOrder = await payPalOrdersApiV2Client.V2.Checkout.Orders.PostAsync(
             orderRequest,
