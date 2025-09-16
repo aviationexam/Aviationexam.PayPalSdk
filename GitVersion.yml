@@ -1,6 +1,7 @@
-mode: ContinuousDelivery
+workflow: TrunkBased/preview1
 branches:
   develop:
+    regex: ^master$|^main$|^develop$
     increment: Patch
     label: nightly
     source-branches: [develop]
