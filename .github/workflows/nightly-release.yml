@@ -42,7 +42,7 @@ jobs:
           dotnet pack src/Aviationexam.PayPalSdk.Common/Aviationexam.PayPalSdk.Common.csproj --nologo --no-build --configuration Release --output nuget-packages -p:PackageVersion=${{ steps.gitversion.outputs.FullSemVer }}
           dotnet pack src/Aviationexam.PayPalSdk.Orders/Aviationexam.PayPalSdk.Orders.csproj --nologo --no-build --configuration Release --output nuget-packages -p:PackageVersion=${{ steps.gitversion.outputs.FullSemVer }}
           dotnet pack src/Aviationexam.PayPalSdk.Payments/Aviationexam.PayPalSdk.Payments.csproj --nologo --no-build --configuration Release --output nuget-packages -p:PackageVersion=${{ steps.gitversion.outputs.FullSemVer }}
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: Nuget-packages-${{ steps.gitversion.outputs.FullSemVer }}
           path: nuget-packages
