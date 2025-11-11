@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
-    <LangVersion>13.0</LangVersion>
+    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+    <LangVersion>14.0</LangVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>false</ImplicitUsings>
     <VersionPrefix>1.0.0</VersionPrefix>
@@ -36,12 +36,24 @@
     <PackageReference Include="Microsoft.Kiota.Serialization.Text" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net9.0' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net10.0' ">
     <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
     <PackageReference Include="Microsoft.Extensions.Http" />
     <PackageReference Include="Microsoft.Extensions.Options" />
-    <PackageReference Include="System.Text.Json" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net9.0' ">
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" VersionOverride="9.0.11" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" VersionOverride="9.0.11" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" VersionOverride="9.0.11" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" VersionOverride="9.0.11" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" VersionOverride="9.0.11" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" VersionOverride="9.0.11" />
+    <PackageReference Include="Microsoft.Extensions.Http" VersionOverride="9.0.11" />
+    <PackageReference Include="Microsoft.Extensions.Logging" VersionOverride="9.0.11" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" VersionOverride="9.0.11" />
+    <PackageReference Include="Microsoft.Extensions.Options" VersionOverride="9.0.11" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net8.0' ">
@@ -49,14 +61,13 @@
     <PackageReference Include="Microsoft.Extensions.Configuration" VersionOverride="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" VersionOverride="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" VersionOverride="8.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Logging" VersionOverride="8.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" VersionOverride="8.0.3" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" VersionOverride="8.0.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" VersionOverride="8.0.2" />
     <PackageReference Include="Microsoft.Extensions.Http" VersionOverride="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging" VersionOverride="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" VersionOverride="8.0.3" />
     <PackageReference Include="Microsoft.Extensions.Options" VersionOverride="8.0.2" />
     <PackageReference Include="Microsoft.Extensions.Primitives" VersionOverride="8.0.0" />
-    <PackageReference Include="System.Text.Json" VersionOverride="8.0.6" />
   </ItemGroup>
 
 </Project>
