@@ -4,9 +4,9 @@
     "net10.0": {
       "Meziantou.Analyzer": {
         "type": "Direct",
-        "requested": "[2.0.250, )",
-        "resolved": "2.0.250",
-        "contentHash": "+Y/z+dDTlDbI0iYsG5sad2kskprPH86jscQcS8VfnEaZxbb4WsP0bD0iEG4ZdY0XwZycdUWfRCtJrTKQX/8bJA=="
+        "requested": "[2.0.251, )",
+        "resolved": "2.0.251",
+        "contentHash": "P3GQLYwdeGXRhzbCC7cdMtjTQI5R9tFv6FI4+RYaidyw0wMwpN2HG6AbZF3OUBf3kJ1uhhCPEFl1SkHq2uVntw=="
       },
       "Microsoft.Extensions.Caching.Abstractions": {
         "type": "Direct",
@@ -210,9 +210,9 @@
     "net8.0": {
       "Meziantou.Analyzer": {
         "type": "Direct",
-        "requested": "[2.0.250, )",
-        "resolved": "2.0.250",
-        "contentHash": "+Y/z+dDTlDbI0iYsG5sad2kskprPH86jscQcS8VfnEaZxbb4WsP0bD0iEG4ZdY0XwZycdUWfRCtJrTKQX/8bJA=="
+        "requested": "[2.0.251, )",
+        "resolved": "2.0.251",
+        "contentHash": "P3GQLYwdeGXRhzbCC7cdMtjTQI5R9tFv6FI4+RYaidyw0wMwpN2HG6AbZF3OUBf3kJ1uhhCPEFl1SkHq2uVntw=="
       },
       "Microsoft.Extensions.Caching.Abstractions": {
         "type": "Direct",
@@ -418,9 +418,9 @@
     "net9.0": {
       "Meziantou.Analyzer": {
         "type": "Direct",
-        "requested": "[2.0.250, )",
-        "resolved": "2.0.250",
-        "contentHash": "+Y/z+dDTlDbI0iYsG5sad2kskprPH86jscQcS8VfnEaZxbb4WsP0bD0iEG4ZdY0XwZycdUWfRCtJrTKQX/8bJA=="
+        "requested": "[2.0.251, )",
+        "resolved": "2.0.251",
+        "contentHash": "P3GQLYwdeGXRhzbCC7cdMtjTQI5R9tFv6FI4+RYaidyw0wMwpN2HG6AbZF3OUBf3kJ1uhhCPEFl1SkHq2uVntw=="
       },
       "Microsoft.Extensions.Caching.Abstractions": {
         "type": "Direct",
