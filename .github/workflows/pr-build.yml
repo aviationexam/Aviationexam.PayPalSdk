@@ -9,6 +9,11 @@ on:
   merge_group:
     types: [checks_requested]
 
+permissions:
+  checks: write
+  pull-requests: write
+  contents: read
+
 jobs:
   unit-test:
     runs-on: ubuntu-latest
