@@ -1,10 +1,9 @@
-workflow: TrunkBased/preview1
+mode: ContinuousDelivery
 branches:
-  develop:
-    regex: ^master$|^main$|^develop$
+  main:
     increment: Patch
     label: nightly
-    source-branches: [develop]
+    source-branches: [main]
 ignore:
   sha: []
 merge-message-formats: {}
