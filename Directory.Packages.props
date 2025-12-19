@@ -44,7 +44,7 @@
     <PackageVersion Include="Microsoft.Extensions.Primitives" Version="9.0.11" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net10.0'">
-    <PackageVersion Include="Meziantou.Extensions.Logging.Xunit.v3" Version="1.1.17" />
+    <PackageVersion Include="Meziantou.Extensions.Logging.Xunit.v3" Version="1.1.20" />
     <PackageVersion Include="Microsoft.Bcl.AsyncInterfaces" Version="10.0.1" />
     <PackageVersion Include="Microsoft.Extensions.Caching.Abstractions" Version="10.0.1" />
     <PackageVersion Include="Microsoft.Extensions.Configuration" Version="10.0.1" />
