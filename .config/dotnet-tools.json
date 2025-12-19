@@ -8,6 +8,13 @@
         "kiota"
       ],
       "rollForward": false
+    },
+    "aviationexam.dependencyupdater": {
+      "version": "0.4.11",
+      "commands": [
+        "dotnet-dependency-updater"
+      ],
+      "rollForward": false
     }
   }
 }
