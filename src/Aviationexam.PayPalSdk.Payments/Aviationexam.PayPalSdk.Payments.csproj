@@ -91,14 +91,14 @@
   <Target
     Name="DownloadPayPalOpenApiV2Specification"
     BeforeTargets="Restore;_GenerateRestoreProjectSpec"
-    Condition=" $(GenerateClient) == 'true' And !Exists('$(MSBuildProjectDirectory)/$(PayPalOriginalOpenApiV2SpecificationFile)')"
+    Condition=" $(GenerateClient) == 'true' And !Exists('$(MSBuildProjectDirectory)/$(PayPalOriginalOpenApiV2SpecificationFile)') And '$(DependencyUpdaterMinimalRestore)' != 'true' "
   >
     <Message Importance="High" Text="Downloading $(PayPalSpecificationUrl) to the $(MSBuildProjectDirectory)/$(PayPalOriginalOpenApiV2SpecificationFile)" />
 
     <Exec WorkingDirectory="$(ProjectDir)" Command="curl -sS $(PayPalSpecificationUrl) --output $(MSBuildProjectDirectory)/$(PayPalOriginalOpenApiV2SpecificationFile)" />
   </Target>
 
-  <Target Name="PreprocessPayPalOpenApiV2Specification" BeforeTargets="Restore;_GenerateRestoreProjectSpec" AfterTargets="DownloadPayPalOpenApiV2Specification" Condition=" $(GenerateClient) == 'true' And !Exists('$(MSBuildProjectDirectory)/$(PayPalOpenApiV2SpecificationFile)')">
+  <Target Name="PreprocessPayPalOpenApiV2Specification" BeforeTargets="Restore;_GenerateRestoreProjectSpec" AfterTargets="DownloadPayPalOpenApiV2Specification" Condition=" $(GenerateClient) == 'true' And !Exists('$(MSBuildProjectDirectory)/$(PayPalOpenApiV2SpecificationFile)') And '$(DependencyUpdaterMinimalRestore)' != 'true' ">
     <Message Importance="High" Text="Preprocess $(PayPalOriginalOpenApiV2SpecificationFile) to the $(PayPalOpenApiV2SpecificationFile)" />
     <!--Message Importance="High" Text="dotnet run - -project $(ProjectDir)\..\Aviationexam.PreprocessOpenApi\Aviationexam.PreprocessOpenApi.csproj -c Release $(PayPalOriginalOpenApiV2SpecificationFile) $(PayPalOpenApiV2SpecificationFile)" /-->
 
@@ -109,7 +109,7 @@
     Name="GeneratePayPalOpenApiV2Client"
     BeforeTargets="Restore;_GenerateRestoreProjectSpec"
     AfterTargets="PreprocessPayPalOpenApiV2Specification"
-    Condition=" $(GenerateClient) == 'true' And !Exists('$(MSBuildProjectDirectory)/$(GeneratedCodeTarget)')"
+    Condition=" $(GenerateClient) == 'true' And !Exists('$(MSBuildProjectDirectory)/$(GeneratedCodeTarget)') And '$(DependencyUpdaterMinimalRestore)' != 'true' "
   >
     <Message Importance="High" Text="Generating client to the $(MSBuildProjectDirectory)/$(GeneratedCodeTarget) using $(KiotaCommand)" />
     <Message Importance="High" Text="Command: $(KiotaV2Exec)" />
