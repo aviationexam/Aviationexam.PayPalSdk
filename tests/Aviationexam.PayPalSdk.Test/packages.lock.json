@@ -10,9 +10,9 @@
       },
       "Meziantou.Extensions.Logging.Xunit.v3": {
         "type": "Direct",
-        "requested": "[1.1.20, )",
-        "resolved": "1.1.20",
-        "contentHash": "NmBrONUndRoTlHIbH2XZO3p7na8kZZk1OMAopAfS56lopiGQP74I4PBP0ZVRlj+YB71HXzQ7a5615skpZAQeVg==",
+        "requested": "[1.1.21, )",
+        "resolved": "1.1.21",
+        "contentHash": "1DEqKEtsxBD+7sMI8GmFtLFpy4N52YH0MCOCe1UlkFF7qwD7LXf4Zv59UUTWgYubXs5v2GmWQRk+FzWy8ibYKw==",
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "10.0.1",
           "xunit.v3.extensibility.core": "3.2.1"
