@@ -4,9 +4,9 @@
     "net10.0": {
       "Meziantou.Analyzer": {
         "type": "Direct",
-        "requested": "[2.0.275, )",
-        "resolved": "2.0.275",
-        "contentHash": "Dn08AyNTi9qOV5DZLSGMbOfnokarei0OCixM5YFWtKA62EuErrlRWGcmO5nICh2i9X+MyNGtFzilCMYNAHaGLA=="
+        "requested": "[2.0.276, )",
+        "resolved": "2.0.276",
+        "contentHash": "3XFEEjrTAhCP23y+g+GDeKcHoJEfb/R4MgIqySKL7rZ4IKdavNeYMu9OjBMWSUJewqOk0qcVt0OtnucfykgCaA=="
       },
       "Meziantou.Extensions.Logging.Xunit.v3": {
         "type": "Direct",
@@ -554,9 +554,9 @@
     "net8.0": {
       "Meziantou.Analyzer": {
         "type": "Direct",
-        "requested": "[2.0.275, )",
-        "resolved": "2.0.275",
-        "contentHash": "Dn08AyNTi9qOV5DZLSGMbOfnokarei0OCixM5YFWtKA62EuErrlRWGcmO5nICh2i9X+MyNGtFzilCMYNAHaGLA=="
+        "requested": "[2.0.276, )",
+        "resolved": "2.0.276",
+        "contentHash": "3XFEEjrTAhCP23y+g+GDeKcHoJEfb/R4MgIqySKL7rZ4IKdavNeYMu9OjBMWSUJewqOk0qcVt0OtnucfykgCaA=="
       },
       "Microsoft.Bcl.AsyncInterfaces": {
         "type": "Direct",
@@ -1093,9 +1093,9 @@
     "net9.0": {
       "Meziantou.Analyzer": {
         "type": "Direct",
-        "requested": "[2.0.275, )",
-        "resolved": "2.0.275",
-        "contentHash": "Dn08AyNTi9qOV5DZLSGMbOfnokarei0OCixM5YFWtKA62EuErrlRWGcmO5nICh2i9X+MyNGtFzilCMYNAHaGLA=="
+        "requested": "[2.0.276, )",
+        "resolved": "2.0.276",
+        "contentHash": "3XFEEjrTAhCP23y+g+GDeKcHoJEfb/R4MgIqySKL7rZ4IKdavNeYMu9OjBMWSUJewqOk0qcVt0OtnucfykgCaA=="
       },
       "Meziantou.Extensions.Logging.Xunit.v3": {
         "type": "Direct",
