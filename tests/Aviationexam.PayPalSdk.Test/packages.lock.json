@@ -4,9 +4,9 @@
     "net10.0": {
       "Meziantou.Analyzer": {
         "type": "Direct",
-        "requested": "[2.0.278, )",
-        "resolved": "2.0.278",
-        "contentHash": "TOCwbpgXahs7Y6TzobPyl3Nula2+WXKLpmbPVBeQouq/Qfu/2G2j5Me9209DofKouLpnKEK9z4fmhxAWgzZM1w=="
+        "requested": "[2.0.279, )",
+        "resolved": "2.0.279",
+        "contentHash": "5U7m9nnFkhnPUJrJRdAQouGdB22HUAnA1u/dNAm1YRsjij04d75FAbS38D5R3FIklNKCijxvyoAlndIgA2GmTA=="
       },
       "Meziantou.Extensions.Logging.Xunit.v3": {
         "type": "Direct",
@@ -554,9 +554,9 @@
     "net8.0": {
       "Meziantou.Analyzer": {
         "type": "Direct",
-        "requested": "[2.0.278, )",
-        "resolved": "2.0.278",
-        "contentHash": "TOCwbpgXahs7Y6TzobPyl3Nula2+WXKLpmbPVBeQouq/Qfu/2G2j5Me9209DofKouLpnKEK9z4fmhxAWgzZM1w=="
+        "requested": "[2.0.279, )",
+        "resolved": "2.0.279",
+        "contentHash": "5U7m9nnFkhnPUJrJRdAQouGdB22HUAnA1u/dNAm1YRsjij04d75FAbS38D5R3FIklNKCijxvyoAlndIgA2GmTA=="
       },
       "Microsoft.Bcl.AsyncInterfaces": {
         "type": "Direct",
@@ -1093,9 +1093,9 @@
     "net9.0": {
       "Meziantou.Analyzer": {
         "type": "Direct",
-        "requested": "[2.0.278, )",
-        "resolved": "2.0.278",
-        "contentHash": "TOCwbpgXahs7Y6TzobPyl3Nula2+WXKLpmbPVBeQouq/Qfu/2G2j5Me9209DofKouLpnKEK9z4fmhxAWgzZM1w=="
+        "requested": "[2.0.279, )",
+        "resolved": "2.0.279",
+        "contentHash": "5U7m9nnFkhnPUJrJRdAQouGdB22HUAnA1u/dNAm1YRsjij04d75FAbS38D5R3FIklNKCijxvyoAlndIgA2GmTA=="
       },
       "Meziantou.Extensions.Logging.Xunit.v3": {
         "type": "Direct",
