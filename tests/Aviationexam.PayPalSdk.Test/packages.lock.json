@@ -1117,12 +1117,12 @@
       },
       "Meziantou.Extensions.Logging.Xunit.v3": {
         "type": "Direct",
-        "requested": "[1.1.17, )",
-        "resolved": "1.1.17",
-        "contentHash": "WaQpViAKkFytxtazyOS9FOFhA7LvSYQxTHzFtj/ACu5JwhIBOgXxoNE+rDyzYJzVJI6nDnvSzSoyGPcmZ17/4Q==",
+        "requested": "[1.1.22, )",
+        "resolved": "1.1.22",
+        "contentHash": "+OBQh2MKh2d9RqmNvKq5uoVaSz86mLdGylc4Paz+a+QZk3KkJQZNMB0PNsU/1FGBgMPp44i2wutXeNhIy6shoQ==",
         "dependencies": {
-          "Microsoft.Extensions.Logging.Abstractions": "9.0.10",
-          "xunit.v3.extensibility.core": "3.2.0"
+          "Microsoft.Extensions.Logging.Abstractions": "10.0.2",
+          "xunit.v3.extensibility.core": "3.2.1"
         }
       },
       "Microsoft.Bcl.AsyncInterfaces": {
