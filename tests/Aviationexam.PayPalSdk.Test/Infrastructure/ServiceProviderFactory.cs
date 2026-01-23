@@ -5,10 +5,7 @@ using Aviationexam.PayPalSdk.Payments.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
-#if NET9_0_OR_GREATER
 using Xunit;
-using Meziantou.Extensions.Logging.Xunit.v3;
-#endif
 
 namespace Aviationexam.PayPalSdk.Test.Infrastructure;
 
@@ -20,9 +17,7 @@ public static class ServiceProviderFactory
     ) => new ServiceCollection()
         .AddLogging(builder => builder
             .SetMinimumLevel(LogLevel.Trace)
-#if NET9_0_OR_GREATER
-            .AddProvider(new XUnitLoggerProvider(TestContext.Current.TestOutputHelper, appendScope: false))
-#endif
+            .AddXUnit(TestContext.Current.TestOutputHelper!)
         )
         .AddSingleton<TimeProvider>(_ => TimeProvider.System)
         .AddPayPalRestApiClient(
