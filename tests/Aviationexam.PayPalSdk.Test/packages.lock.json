@@ -2,21 +2,21 @@
   "version": 2,
   "dependencies": {
     "net10.0": {
+      "MartinCostello.Logging.XUnit.v3": {
+        "type": "Direct",
+        "requested": "[0.7.0, )",
+        "resolved": "0.7.0",
+        "contentHash": "8N+LAJWPf3lkk7KVB9wb6/0N/x/0SEowWoVO0iepopCOnlU4RNyJukK5Yuv1j2227ZGcYhJhGVPuUl/ulC7/WA==",
+        "dependencies": {
+          "Microsoft.Extensions.Logging": "10.0.0",
+          "xunit.v3.extensibility.core": "2.0.1"
+        }
+      },
       "Meziantou.Analyzer": {
         "type": "Direct",
         "requested": "[2.0.284, )",
         "resolved": "2.0.284",
         "contentHash": "bFa91HPH7i6pszMSrvL0XPeijwy+Yd/7RZnPVJY8was8KbrLRX0H0enQh7d8NvnyxdcZVeVOV+Dow9+O9nw4yQ=="
-      },
-      "Meziantou.Extensions.Logging.Xunit.v3": {
-        "type": "Direct",
-        "requested": "[1.1.22, )",
-        "resolved": "1.1.22",
-        "contentHash": "+OBQh2MKh2d9RqmNvKq5uoVaSz86mLdGylc4Paz+a+QZk3KkJQZNMB0PNsU/1FGBgMPp44i2wutXeNhIy6shoQ==",
-        "dependencies": {
-          "Microsoft.Extensions.Logging.Abstractions": "10.0.2",
-          "xunit.v3.extensibility.core": "3.2.1"
-        }
       },
       "Microsoft.Bcl.AsyncInterfaces": {
         "type": "Direct",
@@ -561,6 +561,16 @@
       }
     },
     "net8.0": {
+      "MartinCostello.Logging.XUnit.v3": {
+        "type": "Direct",
+        "requested": "[0.7.0, )",
+        "resolved": "0.7.0",
+        "contentHash": "8N+LAJWPf3lkk7KVB9wb6/0N/x/0SEowWoVO0iepopCOnlU4RNyJukK5Yuv1j2227ZGcYhJhGVPuUl/ulC7/WA==",
+        "dependencies": {
+          "Microsoft.Extensions.Logging": "8.0.1",
+          "xunit.v3.extensibility.core": "2.0.1"
+        }
+      },
       "Meziantou.Analyzer": {
         "type": "Direct",
         "requested": "[2.0.284, )",
@@ -1109,21 +1119,21 @@
       }
     },
     "net9.0": {
+      "MartinCostello.Logging.XUnit.v3": {
+        "type": "Direct",
+        "requested": "[0.7.0, )",
+        "resolved": "0.7.0",
+        "contentHash": "8N+LAJWPf3lkk7KVB9wb6/0N/x/0SEowWoVO0iepopCOnlU4RNyJukK5Yuv1j2227ZGcYhJhGVPuUl/ulC7/WA==",
+        "dependencies": {
+          "Microsoft.Extensions.Logging": "8.0.1",
+          "xunit.v3.extensibility.core": "2.0.1"
+        }
+      },
       "Meziantou.Analyzer": {
         "type": "Direct",
         "requested": "[2.0.284, )",
         "resolved": "2.0.284",
         "contentHash": "bFa91HPH7i6pszMSrvL0XPeijwy+Yd/7RZnPVJY8was8KbrLRX0H0enQh7d8NvnyxdcZVeVOV+Dow9+O9nw4yQ=="
-      },
-      "Meziantou.Extensions.Logging.Xunit.v3": {
-        "type": "Direct",
-        "requested": "[1.1.22, )",
-        "resolved": "1.1.22",
-        "contentHash": "+OBQh2MKh2d9RqmNvKq5uoVaSz86mLdGylc4Paz+a+QZk3KkJQZNMB0PNsU/1FGBgMPp44i2wutXeNhIy6shoQ==",
-        "dependencies": {
-          "Microsoft.Extensions.Logging.Abstractions": "10.0.2",
-          "xunit.v3.extensibility.core": "3.2.1"
-        }
       },
       "Microsoft.Bcl.AsyncInterfaces": {
         "type": "Direct",
