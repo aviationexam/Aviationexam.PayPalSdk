@@ -4,7 +4,7 @@
     <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.46" />
+    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.47" />
     <PackageVersion Include="MartinCostello.Logging.XUnit.v3" Version="0.7.1" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
