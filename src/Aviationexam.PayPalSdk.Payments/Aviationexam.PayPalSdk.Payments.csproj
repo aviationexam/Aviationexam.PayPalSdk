@@ -100,9 +100,12 @@
 
   <Target Name="PreprocessPayPalOpenApiV2Specification" BeforeTargets="Restore;_GenerateRestoreProjectSpec" AfterTargets="DownloadPayPalOpenApiV2Specification" Condition=" $(GenerateClient) == 'true' And !Exists('$(MSBuildProjectDirectory)/$(PayPalOpenApiV2SpecificationFile)') And '$(DependencyUpdaterMinimalRestore)' != 'true' ">
     <Message Importance="High" Text="Preprocess $(PayPalOriginalOpenApiV2SpecificationFile) to the $(PayPalOpenApiV2SpecificationFile)" />
-    <!--Message Importance="High" Text="dotnet run - -project $(ProjectDir)\..\Aviationexam.PreprocessOpenApi\Aviationexam.PreprocessOpenApi.csproj -c Release $(PayPalOriginalOpenApiV2SpecificationFile) $(PayPalOpenApiV2SpecificationFile)" /-->
 
-    <Exec WorkingDirectory="$(ProjectDir)" Command="cp $(PayPalOriginalOpenApiV2SpecificationFile) $(PayPalOpenApiV2SpecificationFile)" />
+    <PropertyGroup>
+      <PreprocessOpenApiProject>$(MSBuildThisFileDirectory)..\Aviationexam.PreprocessOpenApi\Aviationexam.PreprocessOpenApi.csproj</PreprocessOpenApiProject>
+    </PropertyGroup>
+
+    <Exec WorkingDirectory="$(ProjectDir)" Command="dotnet run --project &quot;$(PreprocessOpenApiProject)&quot; --configuration Release -- &quot;$(PayPalOriginalOpenApiV2SpecificationFile)&quot; &quot;$(PayPalOpenApiV2SpecificationFile)&quot;" />
   </Target>
 
   <Target
