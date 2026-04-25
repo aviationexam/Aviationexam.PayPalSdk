@@ -117,4 +117,13 @@
     <Exec WorkingDirectory="$(ProjectDir)" EnvironmentVariables="KIOTA_TUTORIAL_ENABLED=false" Command="$(KiotaV2Exec)" />
   </Target>
 
+  <Target Name="RemoveGeneratedClientsSource" AfterTargets="Clean">
+    <Delete Files="$(MSBuildProjectDirectory)/$(PayPalOpenApiV2SpecificationFile)" />
+    <Delete Files="$(MSBuildProjectDirectory)/$(PayPalOriginalOpenApiV2SpecificationFile)" />
+  </Target>
+
+  <Target Name="RemoveGeneratedClients" AfterTargets="Clean">
+    <RemoveDir Directories="$(MSBuildProjectDirectory)/$(GeneratedCodeTarget)" />
+  </Target>
+
 </Project>
