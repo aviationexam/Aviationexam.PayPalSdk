@@ -42,7 +42,7 @@ public class OrdersCreateTest
                 },
                 Items =
                 [
-                    new Item
+                    new Item_request
                     {
                         Name = "T-shirt",
                         UnitAmount = new Money
@@ -52,9 +52,9 @@ public class OrdersCreateTest
                         },
                         Quantity = "1",
                         Sku = "sku1",
-                        Category = Item_category.PHYSICAL_GOODS,
+                        Category = Item_request_category.PHYSICAL_GOODS,
                     },
-                    new Item
+                    new Item_request
                     {
                         Name = "Shoes",
                         UnitAmount = new Money
@@ -64,7 +64,7 @@ public class OrdersCreateTest
                         },
                         Quantity = "2",
                         Sku = "sku2",
-                        Category = Item_category.PHYSICAL_GOODS,
+                        Category = Item_request_category.PHYSICAL_GOODS,
                     },
                 ],
             },
@@ -111,7 +111,7 @@ public class OrdersCreateTest
 
         var approveUrl = Assert.Single(createdOrder.Links, x => string.Equals(x.Rel, "approve", StringComparison.Ordinal));
         Assert.NotNull(approveUrl.Href);
-        Assert.Equal(Link_description_method.GET, approveUrl.Method);
+        Assert.Equal(Link_description2_method.GET, approveUrl.Method);
 
         TestContext.Current.TestOutputHelper?.WriteLine("OrderId: {0}", createdOrder.Id);
         TestContext.Current.TestOutputHelper?.WriteLine("ApproveUrl: {0}", approveUrl.Href);
