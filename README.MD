@@ -86,7 +86,7 @@ public async static Task<Aviationexam.PayPalSdk.Payments.PayPalCheckoutOrdersCli
                 },
                 Items =
                 [
-                    new Item
+                    new Item_request
                     {
                         Name = "T-shirt",
                         UnitAmount = new Money
@@ -96,9 +96,9 @@ public async static Task<Aviationexam.PayPalSdk.Payments.PayPalCheckoutOrdersCli
                         },
                         Quantity = "1",
                         Sku = "sku1",
-                        Category = Item_category.PHYSICAL_GOODS,
+                        Category = Item_request_category.PHYSICAL_GOODS,
                     },
-                    new Item
+                    new Item_request
                     {
                         Name = "Shoes",
                         UnitAmount = new Money
@@ -108,7 +108,7 @@ public async static Task<Aviationexam.PayPalSdk.Payments.PayPalCheckoutOrdersCli
                         },
                         Quantity = "2",
                         Sku = "sku2",
-                        Category = Item_category.PHYSICAL_GOODS,
+                        Category = Item_request_category.PHYSICAL_GOODS,
                     },
                 ],
             },
