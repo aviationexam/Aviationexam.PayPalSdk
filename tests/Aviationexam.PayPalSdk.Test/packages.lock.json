@@ -172,13 +172,13 @@
       },
       "Microsoft.Testing.Extensions.CodeCoverage": {
         "type": "Direct",
-        "requested": "[18.6.2, )",
-        "resolved": "18.6.2",
-        "contentHash": "vRDhB96XQyVdYFp4cQZOMz/lx0okfCdzTXPxGiuFhKx2yUL0FT/skTpnTv+7x13+tjNOcT39i2Ln3BYtslzf2w==",
+        "requested": "[18.7.0, )",
+        "resolved": "18.7.0",
+        "contentHash": "i7ifcFK6lzM5BHaROS4O7SAkk7L/gAeOwZxs3pyhn8hW73ZDTwQppovXNJL1bm1JBXL69HuI4DO5NzU8rhzIiA==",
         "dependencies": {
-          "Microsoft.DiaSymReader": "2.2.5",
+          "Microsoft.DiaSymReader": "2.2.6",
           "Microsoft.Extensions.DependencyModel": "8.0.2",
-          "Microsoft.Testing.Platform": "2.1.0"
+          "Microsoft.Testing.Platform": "2.2.1"
         }
       },
       "Microsoft.Testing.Extensions.TrxReport": {
@@ -209,8 +209,8 @@
       },
       "Microsoft.DiaSymReader": {
         "type": "Transitive",
-        "resolved": "2.2.5",
-        "contentHash": "Cq0DLpL8oQmXX3EUCClAYWDBy7Nf3Km6kmUw/eYWlYcTeC3g3Nekd/Z/ldsiy+Oi3xboanlQV9oaVCkgdLEhOQ=="
+        "resolved": "2.2.6",
+        "contentHash": "UitZ43WYJQYmcuScLEDTR95EGulBwk2R4N2zLBhaka8frXGVioa6Bkcbc5Fib8UkHIdrnN1lyzOublenrfpgxA=="
       },
       "Microsoft.Extensions.Configuration.FileExtensions": {
         "type": "Transitive",
@@ -528,13 +528,13 @@
     "net10.0/linux-x64": {
       "Microsoft.Testing.Extensions.CodeCoverage": {
         "type": "Direct",
-        "requested": "[18.6.2, )",
-        "resolved": "18.6.2",
-        "contentHash": "vRDhB96XQyVdYFp4cQZOMz/lx0okfCdzTXPxGiuFhKx2yUL0FT/skTpnTv+7x13+tjNOcT39i2Ln3BYtslzf2w==",
+        "requested": "[18.7.0, )",
+        "resolved": "18.7.0",
+        "contentHash": "i7ifcFK6lzM5BHaROS4O7SAkk7L/gAeOwZxs3pyhn8hW73ZDTwQppovXNJL1bm1JBXL69HuI4DO5NzU8rhzIiA==",
         "dependencies": {
-          "Microsoft.DiaSymReader": "2.2.5",
+          "Microsoft.DiaSymReader": "2.2.6",
           "Microsoft.Extensions.DependencyModel": "8.0.2",
-          "Microsoft.Testing.Platform": "2.1.0"
+          "Microsoft.Testing.Platform": "2.2.1"
         }
       },
       "Microsoft.Win32.Registry": {
@@ -546,13 +546,13 @@
     "net10.0/win-x64": {
       "Microsoft.Testing.Extensions.CodeCoverage": {
         "type": "Direct",
-        "requested": "[18.6.2, )",
-        "resolved": "18.6.2",
-        "contentHash": "vRDhB96XQyVdYFp4cQZOMz/lx0okfCdzTXPxGiuFhKx2yUL0FT/skTpnTv+7x13+tjNOcT39i2Ln3BYtslzf2w==",
+        "requested": "[18.7.0, )",
+        "resolved": "18.7.0",
+        "contentHash": "i7ifcFK6lzM5BHaROS4O7SAkk7L/gAeOwZxs3pyhn8hW73ZDTwQppovXNJL1bm1JBXL69HuI4DO5NzU8rhzIiA==",
         "dependencies": {
-          "Microsoft.DiaSymReader": "2.2.5",
+          "Microsoft.DiaSymReader": "2.2.6",
           "Microsoft.Extensions.DependencyModel": "8.0.2",
-          "Microsoft.Testing.Platform": "2.1.0"
+          "Microsoft.Testing.Platform": "2.2.1"
         }
       },
       "Microsoft.Win32.Registry": {
@@ -731,13 +731,13 @@
       },
       "Microsoft.Testing.Extensions.CodeCoverage": {
         "type": "Direct",
-        "requested": "[18.6.2, )",
-        "resolved": "18.6.2",
-        "contentHash": "vRDhB96XQyVdYFp4cQZOMz/lx0okfCdzTXPxGiuFhKx2yUL0FT/skTpnTv+7x13+tjNOcT39i2Ln3BYtslzf2w==",
+        "requested": "[18.7.0, )",
+        "resolved": "18.7.0",
+        "contentHash": "i7ifcFK6lzM5BHaROS4O7SAkk7L/gAeOwZxs3pyhn8hW73ZDTwQppovXNJL1bm1JBXL69HuI4DO5NzU8rhzIiA==",
         "dependencies": {
-          "Microsoft.DiaSymReader": "2.2.5",
+          "Microsoft.DiaSymReader": "2.2.6",
           "Microsoft.Extensions.DependencyModel": "8.0.2",
-          "Microsoft.Testing.Platform": "2.1.0"
+          "Microsoft.Testing.Platform": "2.2.1"
         }
       },
       "Microsoft.Testing.Extensions.TrxReport": {
@@ -768,8 +768,8 @@
       },
       "Microsoft.DiaSymReader": {
         "type": "Transitive",
-        "resolved": "2.2.5",
-        "contentHash": "Cq0DLpL8oQmXX3EUCClAYWDBy7Nf3Km6kmUw/eYWlYcTeC3g3Nekd/Z/ldsiy+Oi3xboanlQV9oaVCkgdLEhOQ=="
+        "resolved": "2.2.6",
+        "contentHash": "UitZ43WYJQYmcuScLEDTR95EGulBwk2R4N2zLBhaka8frXGVioa6Bkcbc5Fib8UkHIdrnN1lyzOublenrfpgxA=="
       },
       "Microsoft.Extensions.Configuration.FileExtensions": {
         "type": "Transitive",
@@ -1087,13 +1087,13 @@
     "net8.0/linux-x64": {
       "Microsoft.Testing.Extensions.CodeCoverage": {
         "type": "Direct",
-        "requested": "[18.6.2, )",
-        "resolved": "18.6.2",
-        "contentHash": "vRDhB96XQyVdYFp4cQZOMz/lx0okfCdzTXPxGiuFhKx2yUL0FT/skTpnTv+7x13+tjNOcT39i2Ln3BYtslzf2w==",
+        "requested": "[18.7.0, )",
+        "resolved": "18.7.0",
+        "contentHash": "i7ifcFK6lzM5BHaROS4O7SAkk7L/gAeOwZxs3pyhn8hW73ZDTwQppovXNJL1bm1JBXL69HuI4DO5NzU8rhzIiA==",
         "dependencies": {
-          "Microsoft.DiaSymReader": "2.2.5",
+          "Microsoft.DiaSymReader": "2.2.6",
           "Microsoft.Extensions.DependencyModel": "8.0.2",
-          "Microsoft.Testing.Platform": "2.1.0"
+          "Microsoft.Testing.Platform": "2.2.1"
         }
       },
       "Microsoft.Win32.Registry": {
@@ -1105,13 +1105,13 @@
     "net8.0/win-x64": {
       "Microsoft.Testing.Extensions.CodeCoverage": {
         "type": "Direct",
-        "requested": "[18.6.2, )",
-        "resolved": "18.6.2",
-        "contentHash": "vRDhB96XQyVdYFp4cQZOMz/lx0okfCdzTXPxGiuFhKx2yUL0FT/skTpnTv+7x13+tjNOcT39i2Ln3BYtslzf2w==",
+        "requested": "[18.7.0, )",
+        "resolved": "18.7.0",
+        "contentHash": "i7ifcFK6lzM5BHaROS4O7SAkk7L/gAeOwZxs3pyhn8hW73ZDTwQppovXNJL1bm1JBXL69HuI4DO5NzU8rhzIiA==",
         "dependencies": {
-          "Microsoft.DiaSymReader": "2.2.5",
+          "Microsoft.DiaSymReader": "2.2.6",
           "Microsoft.Extensions.DependencyModel": "8.0.2",
-          "Microsoft.Testing.Platform": "2.1.0"
+          "Microsoft.Testing.Platform": "2.2.1"
         }
       },
       "Microsoft.Win32.Registry": {
@@ -1290,13 +1290,13 @@
       },
       "Microsoft.Testing.Extensions.CodeCoverage": {
         "type": "Direct",
-        "requested": "[18.6.2, )",
-        "resolved": "18.6.2",
-        "contentHash": "vRDhB96XQyVdYFp4cQZOMz/lx0okfCdzTXPxGiuFhKx2yUL0FT/skTpnTv+7x13+tjNOcT39i2Ln3BYtslzf2w==",
+        "requested": "[18.7.0, )",
+        "resolved": "18.7.0",
+        "contentHash": "i7ifcFK6lzM5BHaROS4O7SAkk7L/gAeOwZxs3pyhn8hW73ZDTwQppovXNJL1bm1JBXL69HuI4DO5NzU8rhzIiA==",
         "dependencies": {
-          "Microsoft.DiaSymReader": "2.2.5",
+          "Microsoft.DiaSymReader": "2.2.6",
           "Microsoft.Extensions.DependencyModel": "8.0.2",
-          "Microsoft.Testing.Platform": "2.1.0"
+          "Microsoft.Testing.Platform": "2.2.1"
         }
       },
       "Microsoft.Testing.Extensions.TrxReport": {
@@ -1327,8 +1327,8 @@
       },
       "Microsoft.DiaSymReader": {
         "type": "Transitive",
-        "resolved": "2.2.5",
-        "contentHash": "Cq0DLpL8oQmXX3EUCClAYWDBy7Nf3Km6kmUw/eYWlYcTeC3g3Nekd/Z/ldsiy+Oi3xboanlQV9oaVCkgdLEhOQ=="
+        "resolved": "2.2.6",
+        "contentHash": "UitZ43WYJQYmcuScLEDTR95EGulBwk2R4N2zLBhaka8frXGVioa6Bkcbc5Fib8UkHIdrnN1lyzOublenrfpgxA=="
       },
       "Microsoft.Extensions.Configuration.FileExtensions": {
         "type": "Transitive",
@@ -1646,13 +1646,13 @@
     "net9.0/linux-x64": {
       "Microsoft.Testing.Extensions.CodeCoverage": {
         "type": "Direct",
-        "requested": "[18.6.2, )",
-        "resolved": "18.6.2",
-        "contentHash": "vRDhB96XQyVdYFp4cQZOMz/lx0okfCdzTXPxGiuFhKx2yUL0FT/skTpnTv+7x13+tjNOcT39i2Ln3BYtslzf2w==",
+        "requested": "[18.7.0, )",
+        "resolved": "18.7.0",
+        "contentHash": "i7ifcFK6lzM5BHaROS4O7SAkk7L/gAeOwZxs3pyhn8hW73ZDTwQppovXNJL1bm1JBXL69HuI4DO5NzU8rhzIiA==",
         "dependencies": {
-          "Microsoft.DiaSymReader": "2.2.5",
+          "Microsoft.DiaSymReader": "2.2.6",
           "Microsoft.Extensions.DependencyModel": "8.0.2",
-          "Microsoft.Testing.Platform": "2.1.0"
+          "Microsoft.Testing.Platform": "2.2.1"
         }
       },
       "Microsoft.Win32.Registry": {
@@ -1664,13 +1664,13 @@
     "net9.0/win-x64": {
       "Microsoft.Testing.Extensions.CodeCoverage": {
         "type": "Direct",
-        "requested": "[18.6.2, )",
-        "resolved": "18.6.2",
-        "contentHash": "vRDhB96XQyVdYFp4cQZOMz/lx0okfCdzTXPxGiuFhKx2yUL0FT/skTpnTv+7x13+tjNOcT39i2Ln3BYtslzf2w==",
+        "requested": "[18.7.0, )",
+        "resolved": "18.7.0",
+        "contentHash": "i7ifcFK6lzM5BHaROS4O7SAkk7L/gAeOwZxs3pyhn8hW73ZDTwQppovXNJL1bm1JBXL69HuI4DO5NzU8rhzIiA==",
         "dependencies": {
-          "Microsoft.DiaSymReader": "2.2.5",
+          "Microsoft.DiaSymReader": "2.2.6",
           "Microsoft.Extensions.DependencyModel": "8.0.2",
-          "Microsoft.Testing.Platform": "2.1.0"
+          "Microsoft.Testing.Platform": "2.2.1"
         }
       },
       "Microsoft.Win32.Registry": {
