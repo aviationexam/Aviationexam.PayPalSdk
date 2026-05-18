@@ -103,9 +103,12 @@
 
     <PropertyGroup>
       <PreprocessOpenApiProject>$(MSBuildThisFileDirectory)..\Aviationexam.PreprocessOpenApi\Aviationexam.PreprocessOpenApi.csproj</PreprocessOpenApiProject>
+      <!-- Isolated obj/bin per caller to prevent parallel-restore race on the shared preprocessor project (MSB3491). -->
+      <PreprocessOpenApiObjDir>$(MSBuildProjectDirectory)/obj/PreprocessOpenApi/</PreprocessOpenApiObjDir>
+      <PreprocessOpenApiBinDir>$(MSBuildProjectDirectory)/obj/PreprocessOpenApi/bin/</PreprocessOpenApiBinDir>
     </PropertyGroup>
 
-    <Exec WorkingDirectory="$(ProjectDir)" Command="dotnet run --project &quot;$(PreprocessOpenApiProject)&quot; --configuration Release -- &quot;$(PayPalOriginalOpenApiV2SpecificationFile)&quot; &quot;$(PayPalOpenApiV2SpecificationFile)&quot;" />
+    <Exec WorkingDirectory="$(ProjectDir)" Command="dotnet run --project &quot;$(PreprocessOpenApiProject)&quot; --configuration Release -p:BaseIntermediateOutputPath=&quot;$(PreprocessOpenApiObjDir)&quot; -p:BaseOutputPath=&quot;$(PreprocessOpenApiBinDir)&quot; -- &quot;$(PayPalOriginalOpenApiV2SpecificationFile)&quot; &quot;$(PayPalOpenApiV2SpecificationFile)&quot;" />
   </Target>
 
   <Target
