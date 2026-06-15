@@ -14,9 +14,9 @@
       },
       "Meziantou.Analyzer": {
         "type": "Direct",
-        "requested": "[3.0.103, )",
-        "resolved": "3.0.103",
-        "contentHash": "gOrfBIHMhpHUMao98VIC0n4gjj15fBX/kl2BMtHyEtFTZSmMks8smN/gScahNccMDOccdSWxIBUdz2hZVhhibA=="
+        "requested": "[3.0.104, )",
+        "resolved": "3.0.104",
+        "contentHash": "lFbTJ7eJCUIAFlZhkF394BnBe4oIto0pCOH8cEZasPqWCMm1bevmaMsIsxO5SSezqGmzzSaeTeMKvBH1fQG5ew=="
       },
       "Microsoft.Bcl.AsyncInterfaces": {
         "type": "Direct",
@@ -574,9 +574,9 @@
       },
       "Meziantou.Analyzer": {
         "type": "Direct",
-        "requested": "[3.0.103, )",
-        "resolved": "3.0.103",
-        "contentHash": "gOrfBIHMhpHUMao98VIC0n4gjj15fBX/kl2BMtHyEtFTZSmMks8smN/gScahNccMDOccdSWxIBUdz2hZVhhibA=="
+        "requested": "[3.0.104, )",
+        "resolved": "3.0.104",
+        "contentHash": "lFbTJ7eJCUIAFlZhkF394BnBe4oIto0pCOH8cEZasPqWCMm1bevmaMsIsxO5SSezqGmzzSaeTeMKvBH1fQG5ew=="
       },
       "Microsoft.Bcl.AsyncInterfaces": {
         "type": "Direct",
@@ -1133,9 +1133,9 @@
       },
       "Meziantou.Analyzer": {
         "type": "Direct",
-        "requested": "[3.0.103, )",
-        "resolved": "3.0.103",
-        "contentHash": "gOrfBIHMhpHUMao98VIC0n4gjj15fBX/kl2BMtHyEtFTZSmMks8smN/gScahNccMDOccdSWxIBUdz2hZVhhibA=="
+        "requested": "[3.0.104, )",
+        "resolved": "3.0.104",
+        "contentHash": "lFbTJ7eJCUIAFlZhkF394BnBe4oIto0pCOH8cEZasPqWCMm1bevmaMsIsxO5SSezqGmzzSaeTeMKvBH1fQG5ew=="
       },
       "Microsoft.Bcl.AsyncInterfaces": {
         "type": "Direct",
