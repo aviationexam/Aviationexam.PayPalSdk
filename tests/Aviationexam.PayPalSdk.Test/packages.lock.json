@@ -14,9 +14,9 @@
       },
       "Meziantou.Analyzer": {
         "type": "Direct",
-        "requested": "[3.0.147, )",
-        "resolved": "3.0.147",
-        "contentHash": "mkYecunV4N0C6rJ8cWcFp8i6I1w5t9H1r/swIqShFHfK3yqLc4PxlSqV/sgXgNoJ0fi3UVXHEHs+maIu8h+txA=="
+        "requested": "[3.0.152, )",
+        "resolved": "3.0.152",
+        "contentHash": "5rAiIlg0V9XThpBU7MdECBMdqS25QjqQRPx3r8+JFp+ImW/z2W/kVX4Xt98/p2nxMQQ1GTfnD1cVxdHXRAH97w=="
       },
       "Microsoft.Bcl.AsyncInterfaces": {
         "type": "Direct",
@@ -574,9 +574,9 @@
       },
       "Meziantou.Analyzer": {
         "type": "Direct",
-        "requested": "[3.0.147, )",
-        "resolved": "3.0.147",
-        "contentHash": "mkYecunV4N0C6rJ8cWcFp8i6I1w5t9H1r/swIqShFHfK3yqLc4PxlSqV/sgXgNoJ0fi3UVXHEHs+maIu8h+txA=="
+        "requested": "[3.0.152, )",
+        "resolved": "3.0.152",
+        "contentHash": "5rAiIlg0V9XThpBU7MdECBMdqS25QjqQRPx3r8+JFp+ImW/z2W/kVX4Xt98/p2nxMQQ1GTfnD1cVxdHXRAH97w=="
       },
       "Microsoft.Bcl.AsyncInterfaces": {
         "type": "Direct",
@@ -1175,9 +1175,9 @@
       },
       "Meziantou.Analyzer": {
         "type": "Direct",
-        "requested": "[3.0.147, )",
-        "resolved": "3.0.147",
-        "contentHash": "mkYecunV4N0C6rJ8cWcFp8i6I1w5t9H1r/swIqShFHfK3yqLc4PxlSqV/sgXgNoJ0fi3UVXHEHs+maIu8h+txA=="
+        "requested": "[3.0.152, )",
+        "resolved": "3.0.152",
+        "contentHash": "5rAiIlg0V9XThpBU7MdECBMdqS25QjqQRPx3r8+JFp+ImW/z2W/kVX4Xt98/p2nxMQQ1GTfnD1cVxdHXRAH97w=="
       },
       "Microsoft.Bcl.AsyncInterfaces": {
         "type": "Direct",
