@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
@@ -24,9 +26,16 @@ namespace Aviationexam.PreprocessOpenApi;
 ///
 /// This tool walks every JSON object in the spec and unwraps redundant
 /// <c>allOf</c> wrappers so Kiota sees a flat composition.
+///
+/// It then renames the components that would take the name of an inline type,
+/// see <see cref="RenameMixinsNamedAfterInlineTypes"/>.
 /// </summary>
 internal static class Program
 {
+    private const string SchemaReferencePrefix = "#/components/schemas/";
+
+    private const string RenamedMixinSuffix = "_fields";
+
     private static async Task<int> Main(string[] args)
     {
         if (args.Length != 2)
@@ -62,6 +71,7 @@ internal static class Program
 
         var stats = new Stats();
         FlattenAllOf(root, stats);
+        RenameMixinsNamedAfterInlineTypes(root, stats);
 
         var options = new JsonSerializerOptions
         {
@@ -77,7 +87,7 @@ internal static class Program
             root.WriteTo(writer, options);
         }
 
-        await Console.Out.WriteLineAsync($"Preprocessed OpenAPI: flattened {stats.UnwrappedAllOfEntries} redundant allOf wrappers across {stats.SchemasTouched} schemas.");
+        await Console.Out.WriteLineAsync($"Preprocessed OpenAPI: flattened {stats.UnwrappedAllOfEntries} redundant allOf wrappers across {stats.SchemasTouched} schemas, renamed {stats.RenamedMixins} mixin schemas.");
         return 0;
     }
 
@@ -181,10 +191,163 @@ internal static class Program
         return true;
     }
 
+    /// <summary>
+    /// Kiota names a type declared inline in a property <c>{model}_{property}</c>,
+    /// so the inline <c>status</c> enum of <c>capture</c> is <c>Capture_status</c>.
+    /// Since Kiota 1.36.0 (microsoft/kiota#5967) that name gets a numeric suffix
+    /// when a component has it, even a component Kiota does not generate.
+    ///
+    /// PayPal composes <c>capture</c>, <c>authorization</c> and <c>refund</c> from
+    /// mixins named <c>capture_status</c> and so on, which declare the inline
+    /// <c>status</c> enum. Kiota generates no class for the mixins, but their
+    /// names still turn the enums into <c>Capture_status1</c> and so on.
+    ///
+    /// This renames each mixin named <c>{model}_{property}</c> that declares
+    /// <c>{property}</c> inline, together with the references to it.
+    /// </summary>
+    private static void RenameMixinsNamedAfterInlineTypes(JsonNode root, Stats stats)
+    {
+        if (root["components"]?["schemas"] is not JsonObject schemas)
+        {
+            return;
+        }
+
+        var renames = new Dictionary<string, string>(StringComparer.Ordinal);
+        foreach (var (modelName, model) in schemas)
+        {
+            if (model is not JsonObject modelObject || modelObject["allOf"] is not JsonArray allOf)
+            {
+                continue;
+            }
+
+            var mixinPrefix = modelName + "_";
+            foreach (var item in allOf)
+            {
+                if (
+                    GetSchemaReferenceName(item) is { } mixinName
+                    && mixinName.StartsWith(mixinPrefix, StringComparison.OrdinalIgnoreCase)
+                    && DeclaresInlineType(schemas[mixinName], mixinName[mixinPrefix.Length..])
+                )
+                {
+                    renames[mixinName] = mixinName + RenamedMixinSuffix;
+                }
+            }
+        }
+
+        if (renames.Count == 0)
+        {
+            return;
+        }
+
+        foreach (var (oldName, newName) in renames)
+        {
+            if (schemas.Any(x => string.Equals(x.Key, newName, StringComparison.OrdinalIgnoreCase)))
+            {
+                throw new InvalidOperationException($"Cannot rename the schema {oldName} to {newName}: a schema with that name exists.");
+            }
+
+            var index = schemas.IndexOf(oldName);
+            var schema = schemas[oldName];
+            schemas.RemoveAt(index);
+            schemas.Insert(index, newName, schema);
+        }
+
+        RenameSchemaReferences(root, renames);
+        stats.RenamedMixins = renames.Count;
+    }
+
+    private static bool DeclaresInlineType(JsonNode? schema, string propertyName)
+    {
+        if (schema is not JsonObject schemaObject || schemaObject["properties"] is not JsonObject properties)
+        {
+            return false;
+        }
+
+        foreach (var (name, property) in properties)
+        {
+            if (string.Equals(name, propertyName, StringComparison.OrdinalIgnoreCase))
+            {
+                return property is JsonObject propertySchema && IsInlineType(propertySchema);
+            }
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Kiota generates a type for an inline enum and for an inline object with
+    /// properties.
+    /// </summary>
+    private static bool IsInlineType(JsonObject schema)
+    {
+        if (schema.ContainsKey("$ref"))
+        {
+            return false;
+        }
+
+        if (schema["enum"] is JsonArray)
+        {
+            return true;
+        }
+
+        return schema["type"] is JsonValue type
+            && type.TryGetValue<string>(out var typeName)
+            && typeName == "object"
+            && schema["properties"] is JsonObject { Count: > 0 };
+    }
+
+    private static string? GetSchemaReferenceName(JsonNode? schema)
+    {
+        if (
+            schema is JsonObject schemaObject
+            && schemaObject["$ref"] is JsonValue reference
+            && reference.TryGetValue<string>(out var path)
+            && path.StartsWith(SchemaReferencePrefix, StringComparison.Ordinal)
+        )
+        {
+            return path[SchemaReferencePrefix.Length..];
+        }
+
+        return null;
+    }
+
+    private static void RenameSchemaReferences(JsonNode node, IReadOnlyDictionary<string, string> renames)
+    {
+        switch (node)
+        {
+            case JsonObject obj:
+                if (GetSchemaReferenceName(obj) is { } name && renames.TryGetValue(name, out var newName))
+                {
+                    obj["$ref"] = SchemaReferencePrefix + newName;
+                }
+
+                foreach (var kvp in obj)
+                {
+                    if (kvp.Value is not null)
+                    {
+                        RenameSchemaReferences(kvp.Value, renames);
+                    }
+                }
+                break;
+
+            case JsonArray arr:
+                foreach (var item in arr)
+                {
+                    if (item is not null)
+                    {
+                        RenameSchemaReferences(item, renames);
+                    }
+                }
+                break;
+        }
+    }
+
     private sealed class Stats
     {
         public int UnwrappedAllOfEntries { get; set; }
 
         public int SchemasTouched { get; set; }
+
+        public int RenamedMixins { get; set; }
     }
 }
