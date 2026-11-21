@@ -23,30 +23,30 @@ jobs:
         with:
           fetch-depth: 0  # This will fetch the full history
       - name: Install GitVersion
-        uses: gittools/actions/gitversion/setup@v4.7.2
+        uses: gittools/actions/gitversion/setup@v5.0.0
         with:
-          versionSpec: '6.x'
+          versionSpec: '7.0.x'
       - name: Use GitVersion
         id: gitversion # step id used as reference for output values
-        uses: gittools/actions/gitversion/execute@v4.7.2
+        uses: gittools/actions/gitversion/execute@v5.0.0
       - run: |
-          echo "MajorMinorPatch: ${{ steps.gitversion.outputs.MajorMinorPatch }}"
-          echo "FullSemVer: ${{ steps.gitversion.outputs.FullSemVer }}"
-          echo "CommitsSinceVersionSource: ${{ steps.gitversion.outputs.CommitsSinceVersionSource }}"
+          echo "MajorMinorPatch: ${{ steps.gitversion.outputs.majorMinorPatch }}"
+          echo "FullSemVer: ${{ steps.gitversion.outputs.fullSemVer }}"
+          echo "VersionSourceDistance: ${{ steps.gitversion.outputs.versionSourceDistance }}"
       - name: Tool restore
         run: dotnet tool restore
       - name: Restore with .Net
         run: dotnet restore --nologo
       - name: Build with .Net
-        run: dotnet build --configuration Release --no-restore --nologo "-p:Version=${{ steps.gitversion.outputs.FullSemVer }}"
+        run: dotnet build --configuration Release --no-restore --nologo "-p:Version=${{ steps.gitversion.outputs.fullSemVer }}"
       - name: Pack with .Net
         run: |
-          dotnet pack src/Aviationexam.PayPalSdk.Common/Aviationexam.PayPalSdk.Common.csproj --nologo --no-build --configuration Release --output nuget-packages -p:PackageVersion=${{ steps.gitversion.outputs.FullSemVer }}
-          dotnet pack src/Aviationexam.PayPalSdk.Orders/Aviationexam.PayPalSdk.Orders.csproj --nologo --no-build --configuration Release --output nuget-packages -p:PackageVersion=${{ steps.gitversion.outputs.FullSemVer }}
-          dotnet pack src/Aviationexam.PayPalSdk.Payments/Aviationexam.PayPalSdk.Payments.csproj --nologo --no-build --configuration Release --output nuget-packages -p:PackageVersion=${{ steps.gitversion.outputs.FullSemVer }}
+          dotnet pack src/Aviationexam.PayPalSdk.Common/Aviationexam.PayPalSdk.Common.csproj --nologo --no-build --configuration Release --output nuget-packages -p:PackageVersion=${{ steps.gitversion.outputs.fullSemVer }}
+          dotnet pack src/Aviationexam.PayPalSdk.Orders/Aviationexam.PayPalSdk.Orders.csproj --nologo --no-build --configuration Release --output nuget-packages -p:PackageVersion=${{ steps.gitversion.outputs.fullSemVer }}
+          dotnet pack src/Aviationexam.PayPalSdk.Payments/Aviationexam.PayPalSdk.Payments.csproj --nologo --no-build --configuration Release --output nuget-packages -p:PackageVersion=${{ steps.gitversion.outputs.fullSemVer }}
       - uses: actions/upload-artifact@v7
         with:
-          name: Nuget-packages-${{ steps.gitversion.outputs.FullSemVer }}
+          name: Nuget-packages-${{ steps.gitversion.outputs.fullSemVer }}
           path: nuget-packages
       - name: Push package to Myget
         if: ${{ vars.USE_MYGET == 'true' }}
